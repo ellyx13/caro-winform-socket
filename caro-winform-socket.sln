@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "caro-winform-socket", "caro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clients", "clients\clients.csproj", "{0E39BFE9-9441-4F22-BABE-D08C39C50D31}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "servers", "servers\servers.csproj", "{70ED64BC-67FE-4B6D-BDE8-C7ECC43B260B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0E39BFE9-9441-4F22-BABE-D08C39C50D31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E39BFE9-9441-4F22-BABE-D08C39C50D31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E39BFE9-9441-4F22-BABE-D08C39C50D31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70ED64BC-67FE-4B6D-BDE8-C7ECC43B260B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70ED64BC-67FE-4B6D-BDE8-C7ECC43B260B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70ED64BC-67FE-4B6D-BDE8-C7ECC43B260B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70ED64BC-67FE-4B6D-BDE8-C7ECC43B260B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
