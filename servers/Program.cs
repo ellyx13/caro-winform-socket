@@ -10,6 +10,7 @@ namespace servers
     {
         static void Main(string[] args)
         {
+            Console.ReadKey();
         }
     }
 }
