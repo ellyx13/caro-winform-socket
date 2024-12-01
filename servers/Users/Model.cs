@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace servers.Users
 {
-    public class Model
+    public class UsersModel
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
