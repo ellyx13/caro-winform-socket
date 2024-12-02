@@ -8,8 +8,6 @@ namespace servers
     {
         public static async Task Main(string[] args)
         {
-            Console.WriteLine("The Caro Game server is started");
-            Console.ReadKey();
         }
     }
 }
