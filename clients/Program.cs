@@ -12,11 +12,41 @@ namespace clients
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            /*-- Này là code hiện giao diện winform --*/
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new Form1());
+
+
+            connect_server client = new connect_server("172.17.48.190", 12345);
+
+            if (client.Connect())
+            {
+                client.StartReceiving();
+
+                // Gửi tin nhắn
+                Console.WriteLine("Type messages to send to the server. Type 'exit' to quit.");
+                while (true)
+                {
+                    string message = Console.ReadLine();
+                    if (message != null && message.ToLower() == "exit")
+                    {
+                        client.Disconnect();
+                        break;
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(message))
+                    {
+                        client.SendMessage(message);
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Unable to connect to the server. Exiting...");
+            }
         }
     }
 }

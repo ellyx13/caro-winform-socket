@@ -15,7 +15,6 @@ namespace servers
             Console.WriteLine("Press Enter to stop the server...");
             Console.ReadLine();
             server.Stop();
-
         }
     }
 }
