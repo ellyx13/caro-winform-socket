@@ -257,6 +257,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Games\Controllers.cs" />
     <Compile Include="Games\Model.cs" />
+    <Compile Include="Socket.cs" />
     <Compile Include="Users\Controllers.cs" />
     <Compile Include="Users\Model.cs" />
   </ItemGroup>
