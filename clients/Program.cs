@@ -16,7 +16,7 @@ namespace clients
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GameRoomForm());
+            Application.Run(new ChessForm());
         }
     }
 }
