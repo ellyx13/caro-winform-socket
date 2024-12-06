@@ -47,10 +47,9 @@
             this.joinBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.joinBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.joinBtn.ForeColor = System.Drawing.Color.Transparent;
-            this.joinBtn.Location = new System.Drawing.Point(735, 541);
-            this.joinBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.joinBtn.Location = new System.Drawing.Point(656, 471);
             this.joinBtn.Name = "joinBtn";
-            this.joinBtn.Size = new System.Drawing.Size(452, 91);
+            this.joinBtn.Size = new System.Drawing.Size(339, 74);
             this.joinBtn.TabIndex = 2;
             this.joinBtn.UseVisualStyleBackColor = false;
             this.joinBtn.Click += new System.EventHandler(this.joinBtn_Click);
@@ -63,11 +62,10 @@
             this.textBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(632, 398);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Location = new System.Drawing.Point(548, 358);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(638, 40);
+            this.textBox1.Size = new System.Drawing.Size(478, 32);
             this.textBox1.TabIndex = 3;
             this.textBox1.Text = "213";
             // 
@@ -85,18 +83,18 @@
             // 
             // JoinGame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::clients.Properties.Resources.Join_game1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1902, 1033);
+            this.ClientSize = new System.Drawing.Size(1620, 920);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.joinBtn);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "JoinGame";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();
 

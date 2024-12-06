@@ -54,7 +54,7 @@
             this.joinBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.joinBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.joinBtn.ForeColor = System.Drawing.Color.Transparent;
-            this.joinBtn.Location = new System.Drawing.Point(347, 367);
+            this.joinBtn.Location = new System.Drawing.Point(674, 374);
             this.joinBtn.Name = "joinBtn";
             this.joinBtn.Size = new System.Drawing.Size(303, 81);
             this.joinBtn.TabIndex = 2;
@@ -73,7 +73,7 @@
             this.createBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.createBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.createBtn.ForeColor = System.Drawing.Color.Transparent;
-            this.createBtn.Location = new System.Drawing.Point(347, 238);
+            this.createBtn.Location = new System.Drawing.Point(674, 245);
             this.createBtn.Name = "createBtn";
             this.createBtn.Size = new System.Drawing.Size(303, 94);
             this.createBtn.TabIndex = 1;
@@ -92,7 +92,7 @@
             this.authorBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.authorBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.authorBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.authorBtn.Location = new System.Drawing.Point(347, 484);
+            this.authorBtn.Location = new System.Drawing.Point(674, 491);
             this.authorBtn.Name = "authorBtn";
             this.authorBtn.Size = new System.Drawing.Size(303, 81);
             this.authorBtn.TabIndex = 3;
@@ -111,7 +111,7 @@
             this.helpBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.helpBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.helpBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.helpBtn.Location = new System.Drawing.Point(347, 601);
+            this.helpBtn.Location = new System.Drawing.Point(674, 608);
             this.helpBtn.Name = "helpBtn";
             this.helpBtn.Size = new System.Drawing.Size(303, 81);
             this.helpBtn.TabIndex = 4;
@@ -130,7 +130,7 @@
             this.exitBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exitBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.exitBtn.Location = new System.Drawing.Point(347, 718);
+            this.exitBtn.Location = new System.Drawing.Point(674, 725);
             this.exitBtn.Name = "exitBtn";
             this.exitBtn.Size = new System.Drawing.Size(303, 81);
             this.exitBtn.TabIndex = 5;
@@ -143,17 +143,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::clients.Properties.Resources.Home;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(966, 907);
+            this.ClientSize = new System.Drawing.Size(1620, 920);
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.helpBtn);
             this.Controls.Add(this.authorBtn);
             this.Controls.Add(this.createBtn);
             this.Controls.Add(this.joinBtn);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();
 
