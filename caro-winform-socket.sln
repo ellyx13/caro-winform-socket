@@ -6,9 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clients", "clients\clients.csproj", "{868C5BFA-2E03-4A2B-AF5F-71C045E19C6F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{50C71944-BCBB-4912-9751-2E64B90FDFA3}"
-	ProjectSection(SolutionItems) = preProject
-		C:\Users\lecon\Downloads\press_start_2p\PressStart2P.ttf = C:\Users\lecon\Downloads\press_start_2p\PressStart2P.ttf
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
