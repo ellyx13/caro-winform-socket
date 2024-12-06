@@ -15,8 +15,8 @@ namespace clients
 
         private const int CHESS_BOARD_WIDTH = 12;  // Số cột của bàn cờ
         private const int CHESS_BOARD_HEIGHT = 12; // Số hàng của bàn cờ
-        private const int CHESS_WIDTH = 46;        // Chiều rộng của mỗi ô
-        private const int CHESS_HEIGHT = 46;       // Chiều cao của mỗi ô
+        private const int CHESS_WIDTH = 40;        // Chiều rộng của mỗi ô
+        private const int CHESS_HEIGHT = 40;       // Chiều cao của mỗi ô
 
 
         private Button[,] chessBoard;
@@ -185,6 +185,21 @@ namespace clients
                 SendMessage();
                 e.Handled = true;
             }
+        }
+
+        private void pnlBoard_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtShowChat_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
