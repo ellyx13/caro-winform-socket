@@ -12,32 +12,29 @@ namespace clients
 {
     public partial class register : Form
     {
+
         public register()
         {
             InitializeComponent();
+            this.KeyPreview = true; // Cho phép Form nhận phím
+            this.KeyDown += MainForm_KeyDown;
         }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Escape) // Kiểm tra nếu phím là Esc
+            {
+                var result = MessageBox.Show("Bạn có chắc chắn muốn thoát trò chơi?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    Application.Exit();
+                }
+            }
         }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void loginBtn_Click(object sender, EventArgs e)
         {
-            login form = new login();
-            form.ShowDialog();
-
-            this.Close();
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
+            this.Hide();
+            login login = new login();
+            login.Show();
         }
     }
 }
