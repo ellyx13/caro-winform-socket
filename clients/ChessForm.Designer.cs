@@ -36,6 +36,7 @@
             this.btnEsc = new System.Windows.Forms.Button();
             this.btnEnter = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -102,11 +103,19 @@
             this.panel1.Controls.Add(this.txtChat);
             this.panel1.Name = "panel1";
             // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(52)))), ((int)(((byte)(69)))));
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            resources.ApplyResources(this.textBox1, "textBox1");
+            this.textBox1.Name = "textBox1";
+            // 
             // ChessForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::clients.Properties.Resources.Chess__2_;
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnEnter);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.pnlBoard);
@@ -133,5 +142,6 @@
         private System.Windows.Forms.Button btnEsc;
         private System.Windows.Forms.Button btnEnter;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

@@ -15,8 +15,8 @@ namespace clients
 
         private const int CHESS_BOARD_WIDTH = 12;  // Số cột của bàn cờ
         private const int CHESS_BOARD_HEIGHT = 12; // Số hàng của bàn cờ
-        private const int CHESS_WIDTH = 40;        // Chiều rộng của mỗi ô
-        private const int CHESS_HEIGHT = 40;       // Chiều cao của mỗi ô
+        private const int CHESS_WIDTH = 52;        // Chiều rộng của mỗi ô
+        private const int CHESS_HEIGHT = 52;       // Chiều cao của mỗi ô
 
 
         private Button[,] chessBoard;
