@@ -173,6 +173,16 @@ namespace clients.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CreateGameBackground {
+            get {
+                object obj = ResourceManager.GetObject("CreateGameBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Exit {
             get {
                 object obj = ResourceManager.GetObject("Exit", resourceCulture);
@@ -246,6 +256,16 @@ namespace clients.Properties {
         internal static System.Drawing.Bitmap Join_game {
             get {
                 object obj = ResourceManager.GetObject("Join game", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Join_Game_Background {
+            get {
+                object obj = ResourceManager.GetObject("Join_Game_Background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

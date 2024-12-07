@@ -98,8 +98,8 @@ namespace clients
                 if(userLogin.Code == login_success_code)
                 {
                     MessageBox.Show("Đăng nhập thành công");
-                    new MainForm().Show();
-                    this.Close();
+                    new MainForm(userLogin).Show();
+                    this.Hide();
                 }
                 else if(userLogin.Code == login_authen_failed_code)
                 {

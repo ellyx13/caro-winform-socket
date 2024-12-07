@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace clients
 {
-    internal class Schemas
+    public class Schemas
     {
         public class Request
         {
@@ -20,6 +20,8 @@ namespace clients
         {
             public bool Success { get; set; }
             public int Code { get; set; }
+
+
             public string Message { get; set; }
             public Dictionary<string, object> Data { get; set; }
         }

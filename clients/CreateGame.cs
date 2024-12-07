@@ -13,7 +13,8 @@ namespace clients
     public partial class CreateGame : Form
     {
         MainForm mainForm;
-        public CreateGame()
+        public Schemas.Response data;
+        public CreateGame(Schemas.Response data)
         {
             InitializeComponent();
             this.KeyPreview = true; // Cho phép Form nhận sự kiện phím
@@ -24,7 +25,7 @@ namespace clients
             if (e.KeyCode == Keys.Escape) // Kiểm tra nếu phím là Esc
             {
                 this.Close(); // Đóng Form hiện tại
-                MainForm mainForm = new MainForm();
+                MainForm mainForm = new MainForm(data);
                 mainForm.Show();
             }
             else if (e.KeyCode == Keys.Enter) // Kiểm tra nếu phím là Enter
@@ -39,6 +40,11 @@ namespace clients
             MessageBox.Show("Tính năng đang phát triển");
             new ChessForm().Show();
             this.Close();
+        }
+
+        private void lb_money_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

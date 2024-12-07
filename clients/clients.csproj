@@ -103,10 +103,11 @@
     <EmbeddedResource Include="Author.resx">
       <DependentUpon>Author.cs</DependentUpon>
     </EmbeddedResource>
-    <Compile Include="TestSocket.cs" />
     <EmbeddedResource Include="ChessForm.resx">
       <DependentUpon>ChessForm.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="TestSocketHost.cs" />
+    <Compile Include="TestSocketGuest.cs" />
     <Compile Include="register.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -217,6 +218,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AuthorsBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CreateGameBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Join_Game_Background.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

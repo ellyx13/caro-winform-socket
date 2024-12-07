@@ -13,11 +13,14 @@ namespace clients
 {
     public partial class JoinGame : Form
     {
-        public JoinGame()
+        private Schemas.Response data_user;
+        public JoinGame(Schemas.Response data)
         {
             InitializeComponent();
             this.KeyPreview = true; // Cho phép Form nhận sự kiện phím
             this.KeyDown += close_KeyDown;
+            this.data_user = data;
+            lb_money.Text = Convert.ToInt32(data_user.Data.TryGetValue("Credits", out object creditsObj)).ToString();
         }
         private void close_KeyDown(object sender, KeyEventArgs e)
         {
@@ -34,6 +37,11 @@ namespace clients
         private void joinBtn_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Tính năng đang phát triển");
+        }
+
+        private void lb_money_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

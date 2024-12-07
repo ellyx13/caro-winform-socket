@@ -15,15 +15,17 @@ namespace clients
     {
         private List<Control> controlsByTabIndex; // Danh sách điều khiển sắp xếp theo TabIndex
         private int currentTabIndex = -1;
-        public MainForm()
+        public Schemas.Response data_user;
+        public MainForm(Schemas.Response data)
         {
             InitializeComponent();
             this.KeyPreview = true; // Đảm bảo Form nhận sự kiện bàn phím
             InitializeTabIndexList();
+            data_user = data;
         }
         private void joinBtn_Click(object sender, EventArgs e)
         {
-            JoinGame join = new JoinGame();
+            JoinGame join = new JoinGame(data_user);
             join.Show();
         }
 
@@ -134,7 +136,7 @@ namespace clients
 
         private void createBtn_Click(object sender, EventArgs e)
         {
-            CreateGame game = new CreateGame();
+            CreateGame game = new CreateGame(data_user);
             game.ShowDialog();
             this.Close();
         }
