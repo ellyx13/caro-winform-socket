@@ -49,5 +49,17 @@ namespace servers.Users
 
             return JsonConvert.SerializeObject(exception);
         }
+
+        public static string AuthenFailed()
+        {
+            var exception = new UserExceptions
+            {
+                Success = false,
+                Code = 15,
+                Message = "Authentication failed."
+            };
+
+            return JsonConvert.SerializeObject(exception);
+        }
     }
 }
