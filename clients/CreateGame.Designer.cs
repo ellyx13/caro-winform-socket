@@ -43,9 +43,10 @@
             this.creatBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.creatBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.creatBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.creatBtn.Location = new System.Drawing.Point(609, 455);
+            this.creatBtn.Location = new System.Drawing.Point(751, 566);
+            this.creatBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.creatBtn.Name = "creatBtn";
-            this.creatBtn.Size = new System.Drawing.Size(386, 97);
+            this.creatBtn.Size = new System.Drawing.Size(440, 108);
             this.creatBtn.TabIndex = 1;
             this.creatBtn.UseVisualStyleBackColor = false;
             this.creatBtn.Click += new System.EventHandler(this.creatBtn_Click);
@@ -56,28 +57,31 @@
             this.txtRoomName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
             this.txtRoomName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtRoomName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtRoomName.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRoomName.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRoomName.ForeColor = System.Drawing.Color.White;
-            this.txtRoomName.Location = new System.Drawing.Point(556, 360);
+            this.txtRoomName.Location = new System.Drawing.Point(640, 425);
+            this.txtRoomName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtRoomName.Name = "txtRoomName";
-            this.txtRoomName.Size = new System.Drawing.Size(464, 33);
+            this.txtRoomName.Size = new System.Drawing.Size(619, 46);
             this.txtRoomName.TabIndex = 4;
             this.txtRoomName.Text = "213";
             // 
             // CreateGame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::clients.Properties.Resources.Create_game_GUI;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1620, 920);
+            this.ClientSize = new System.Drawing.Size(1942, 1102);
             this.Controls.Add(this.txtRoomName);
             this.Controls.Add(this.creatBtn);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "CreateGame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CreateGame";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();
 

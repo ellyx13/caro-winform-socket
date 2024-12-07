@@ -171,6 +171,9 @@
   <data name="txtShowChat.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="txtShowChat.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Both</value>
+  </data>
   <data name="txtShowChat.Size" type="System.Drawing.Size, System.Drawing">
     <value>522, 528</value>
   </data>
@@ -380,6 +383,9 @@
   </metadata>
   <data name="textBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
+  </data>
+  <data name="textBox1.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="textBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>951, 864</value>

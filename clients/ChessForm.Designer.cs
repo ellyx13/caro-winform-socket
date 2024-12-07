@@ -109,6 +109,7 @@
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(52)))), ((int)(((byte)(69)))));
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             // 
             // ChessForm
             // 
