@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,33 +11,14 @@ namespace clients
     {
         public static async Task Test()
         {
-            var client = new SocketClient("127.0.0.1", 5000);
+            var response = await ClientControllers.Users.Register("Nguyen Van A", "nguyenvanbc123@gmail.com", "123456");
+            Console.WriteLine(response);
 
-            Console.Write("Enter your client ID: ");
-            string clientId = Console.ReadLine();
+            var response1 = await ClientControllers.Users.Login("nguyenvanbc123@gmail.com", "123456");
+            Console.WriteLine(response1);
 
-            // Kết nối tới server
-            if (await client.ConnectAsync(clientId))
-            {
-                while (true)
-                {
-                    Console.Write("Enter message (or 'exit' to disconnect): ");
-                    string message = Console.ReadLine();
-
-                    if (message.ToLower() == "exit")
-                    {
-                        break;
-                    }
-
-                    // Gửi tin nhắn tới server
-                    await client.SendAsync(message);
-
-                    // Nhận phản hồi từ server
-                    var response = await client.ReceiveAsync();
-                }
-            }
             // Ngắt kết nối
-            client.Disconnect();
+            ClientControllers.Disconnect();
         }
 
     }

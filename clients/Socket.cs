@@ -25,20 +25,19 @@ namespace clients
         }
 
         // Kết nối tới server
-        public async Task<bool> ConnectAsync(string clientId)
+        public async Task<bool> ConnectAsync()
         {
             try
             {
-                ClientId = clientId;
                 _client = new TcpClient();
                 await _client.ConnectAsync(_serverIp, _serverPort);
                 _stream = _client.GetStream();
 
                 // Gửi ID tới server
-                var idBytes = Encoding.UTF8.GetBytes(clientId);
-                await _stream.WriteAsync(idBytes, 0, idBytes.Length);
+                //var idBytes = Encoding.UTF8.GetBytes("Hello");
+                //await _stream.WriteAsync(idBytes, 0, idBytes.Length);
 
-                Console.WriteLine($"Connected to server as {clientId}.");
+                Console.WriteLine($"Connected to server.");
                 return true;
             }
             catch (Exception ex)
