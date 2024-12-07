@@ -12,17 +12,14 @@ namespace clients
         public static async Task Test()
         {
             var guest = await ClientControllers.Users.Register("Nguyen Thi B", "nguyenthib@gmail.com", "123456");
-            Console.WriteLine(guest);
 
             var guestLogin = await ClientControllers.Users.Login("nguyenthib@gmail.com", "123456");
-            Console.WriteLine(guest);
 
 
             string guestId = guestLogin.Data["Id"].ToString();
 
             string gameCode = "8805";
             var game = await ClientControllers.Games.JoinGame(gameCode, guestId);
-            Console.WriteLine(game);
 
             string gameId = game.Data["Id"].ToString();
 
@@ -31,6 +28,7 @@ namespace clients
                 var chat = await ClientControllers.Chat.SendMessage(gameId, guestId, "Hello");
                 var response = await ClientControllers.Reciver();
                 Console.WriteLine(response);
+                Console.ReadLine();
             }
 
             

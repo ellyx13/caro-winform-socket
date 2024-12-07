@@ -91,20 +91,15 @@ namespace servers
                     if (bytesRead == 0) break; // Client đóng kết nối
 
                     var request = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                    Console.WriteLine($"Received: {request}");
+
                     var data = ToDictionary(request);
                     string userId = data.UserId;
                     if (!string.IsNullOrEmpty(userId))
                     {
-                        if (!_clients.TryAdd(userId, client))
-                        {
-                            Console.WriteLine($"User ID {userId} already exists. Closing connection.");
-                            DisconnectClient(client);
-                            return;
-                        }
+                        _clients.TryAdd(userId, client);
                     }
                     
-                    Console.WriteLine($"Received from {userId}: {data}");
+                    Console.WriteLine($"Received from {userId}: {request}");
                     var requestParse = JsonConvert.DeserializeObject<Schemas.Request>(request);
                     if (requestParse.Route == "chat")
                     {
@@ -144,19 +139,16 @@ namespace servers
             }
             finally
             {
-                DisconnectClient(client);
+                DisconnectClient(client, null);
             }
         }
 
-        private void DisconnectClient(TcpClient client)
+        private void DisconnectClient(TcpClient client, string userId)
         {
-            var entry = _clients.FirstOrDefault(kvp => kvp.Value == client);
-            if (!string.IsNullOrEmpty(entry.Key))
+            if (userId != null)
             {
-                _clients.TryRemove(entry.Key, out _);
-                Console.WriteLine($"Client disconnected: {entry.Key}");
+                _clients.TryRemove(userId, out _);
             }
-
             client.Close();
         }
     }
