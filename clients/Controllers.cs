@@ -92,6 +92,30 @@ namespace clients
                 var request = Schemas.ToRequest(UserId, "games/join", data);
                 return await Send(request);
             }
+
+            public async static Task<Schemas.Response> MakeMove(string gameId, string UserId, int x, int y)
+            {
+                var data = new Dictionary<string, object>
+                {
+                    { "gameId", gameId },
+                    { "x", x },
+                    { "y", y }
+                };
+
+                var request = Schemas.ToRequest(UserId, "games/move", data);
+                return await Send(request);
+            }
+
+            public async static Task<Schemas.Response> Winner(string gameId, string UserId)
+            {
+                var data = new Dictionary<string, object>
+                {
+                    { "gameId", gameId },
+                };
+
+                var request = Schemas.ToRequest(UserId, "games/winner", data);
+                return await Send(request);
+            }
         }
 
         public static class Chat

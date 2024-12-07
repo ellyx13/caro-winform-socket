@@ -66,6 +66,7 @@ namespace servers.Games
             {
                 Name = name,
                 Host = host,
+                Status = "waiting",
                 Code = await GenerateUniqueCodeGame()
             };
 
@@ -87,8 +88,19 @@ namespace servers.Games
 
             var game = games[0];
 
+            if (game.Status == "playing")
+            {
+                return GameExceptions.GameIsPlaying();
+            }
+
+            if (game.Status == "end")
+            {
+                return GameExceptions.GameIsEnd();
+            }
+
             // Cập nhật Host
             game.Guest = guest;
+            game.Status = "playing";
 
             // Lưu thay đổi
             await crud.UpdateById(game.Id, game);
@@ -114,20 +126,34 @@ namespace servers.Games
         }
 
         // Phương thức cập nhật người thắng
-        public async Task<bool> SetWinner(string gameCode, bool isHostWin)
+        public async Task<string> SetWinner(string gameId, string winner)
         {
             // Lấy thông tin trò chơi theo ID
-            var game = await crud.GetById<GameModel>(gameCode);
-            if (game == null)
+            var game = await crud.GetById<GameModel>(gameId);
+            game.Status = "end";
+
+            if (game.Host == winner)
             {
-                return false; // Không tìm thấy trò chơi
+                game.IsHostWin = true;
+            }
+            else
+            {
+                game.IsHostWin = false;
+
             }
 
-            // Cập nhật người thắng
-            game.IsHostWin = isHostWin;
+            await userControllers.PlusMoneyForWinner(winner);
 
             // Lưu thay đổi
-            return await crud.UpdateById(game.Id, game);
+            await crud.UpdateById(game.Id, game);
+            var gameUpdated = await crud.GetById<GameModel>(gameId);
+            var gameData = gameUpdated.ToDictionary();
+            return Schemas.ToResponse(true, 26, winner + " is winner.", gameData);
+        }
+
+        public string MakeMove(string gameId, string userId, int x, int y)
+        {
+            return Schemas.ToResponse(true, 26, "Make move successed.", null);
         }
     }
 }
