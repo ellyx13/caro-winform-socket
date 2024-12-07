@@ -119,16 +119,16 @@ namespace servers
                                     { "senderId", requestParse.UserId }
                                 };
                                 string response = Schemas.ToResponse(true, 30, "New message", dataSender);
-                                var messageBytes = Encoding.UTF8.GetBytes(message);
+                                var messageBytes = Encoding.UTF8.GetBytes(response);
                                 await anotherStream.WriteAsync(messageBytes, 0, messageBytes.Length, token);
                             }
                         }
                     }
                     else
                     {
-                        var result = await _serverControllers.HandleRequest(request);
+                        string result = await _serverControllers.HandleRequest(request);
+                        Console.WriteLine($"Response to {userId}: {result}");
                         var response = Encoding.UTF8.GetBytes(result);
-                        Console.WriteLine("Response: ", response);
                         await stream.WriteAsync(response, 0, response.Length, token);
                     }
                 }

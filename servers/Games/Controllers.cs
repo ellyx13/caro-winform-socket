@@ -105,10 +105,8 @@ namespace servers.Games
         public async Task<string> CreateGame(string gameName, string HostId)
         {
             // Trừ tiền Host
-            Console.WriteLine("Trừ tiền Host");
             await userControllers.MinusMoney(HostId);
 
-            Console.WriteLine("Save");
             var games = await Save(gameName, HostId);
             var gameData = games.ToDictionary();
 
