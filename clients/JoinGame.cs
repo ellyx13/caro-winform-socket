@@ -46,8 +46,20 @@ namespace clients
             int game_isend_code = 25;
             if(joinGame.Code == game_join_success_code)
             {
-                new ChessForm(joinGame).Show();
+                new ChessForm(joinGame, data_user).Show();
                 this.Close();
+            }
+            else if (joinGame.Code == game_notfound_code)
+            {
+                MessageBox.Show("Không tìm thấy phòng");
+            }
+            else if (joinGame.Code == game_isplay_code)
+            {
+                MessageBox.Show("Phòng đang chơi");
+            }
+            else if (joinGame.Code == game_isend_code)
+            {
+                MessageBox.Show("Phòng đã kết thúc");
             }
         }
 

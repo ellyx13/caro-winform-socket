@@ -30,8 +30,20 @@ namespace clients
             this.game_response = data_game;
             this.user_response = data_user;
             status = game_response.Data["Status"].ToString();
-            InitializeComponent();
+            InitializeComponent();  
             DrawChessBoard();
+        }
+
+        public static async Task<Boolean> HandleChess()
+        {
+            //Console.WriteLine("Đang đợi request");
+            while (true)
+            {
+                Console.WriteLine("Đang đợi request");
+                var response = await ClientControllers.Reciver();
+                Console.WriteLine(response);
+            }
+            return true;
         }
 
         private void DrawChessBoard()
@@ -50,17 +62,9 @@ namespace clients
                         Font = new Font("Times New Roman", 25, FontStyle.Bold),
                         Tag = new Point(i, j)
                     };
-                    if (status != "waiting")
-                    {
-                        btn.Click += Cell_Click;
-                        pnlBoard.Controls.Add(btn);
-                        chessBoard[i, j] = btn;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Game đang ở trạng thái chờ, bạn không thể thực hiện nước đi.");
-                        return;
-                    }
+                     btn.Click += Cell_Click;
+                     pnlBoard.Controls.Add(btn);
+                     chessBoard[i, j] = btn;
                 }
             }
         }
@@ -70,12 +74,12 @@ namespace clients
 
         }
         //sự kiện gửi tin nhắn
-        private void SendMessage()
+        private async void SendMessage()
         {
             string message = txtChat.Text.Trim();
             if (!string.IsNullOrEmpty(message))
             {
-                ClientControllers.Chat.SendMessage(game_response.Data["Id"].ToString(), user_response.Data["Id"].ToString(), message);
+                await ClientControllers.Chat.SendMessage(game_response.Data["Id"].ToString(), user_response.Data["Id"].ToString(), message);
                 AppendMessage("You: " + message);
                 txtChat.Clear();
             }
@@ -177,12 +181,12 @@ namespace clients
             }
         }
 
-        private void ExitGame()
+        private async void ExitGame()
         {
             var result = MessageBox.Show("Bạn có chắc chắn muốn thoát trò chơi?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                ClientControllers.Games.Winner(game_response.Data["Id"].ToString(), user_response.Data["Id"].ToString());
+                await ClientControllers.Games.Winner(game_response.Data["Id"].ToString(), user_response.Data["Id"].ToString());
                 ClientControllers.Disconnect();
                 Application.Exit();
             }

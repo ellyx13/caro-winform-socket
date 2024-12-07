@@ -11,7 +11,7 @@ namespace clients
     internal class ClientControllers
     {
 
-        public static SocketClient client = new SocketClient("26.189.99.4", 6000);
+        public static SocketClient client = new SocketClient("26.189.99.4", 5000);
         public static bool IsConnected = false;
 
         public static void Disconnect()
