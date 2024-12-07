@@ -44,7 +44,6 @@ namespace clients
             if(game.Code == create_success_code)
             {
                 new ChessForm(game, data_user).Show();
-                await ChessForm.HandleChess();
                 this.Close();
             }
         }

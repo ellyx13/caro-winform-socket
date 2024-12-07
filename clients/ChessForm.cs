@@ -22,27 +22,34 @@ namespace clients
         private Button[,] chessBoard;
         private bool isPlayer1Turn = true;
         public string status;
+        public Schemas.Response message_response;
         public Schemas.Response game_response;
         public Schemas.Response user_response;
         public ChessForm(Schemas.Response data_game, Schemas.Response data_user)
         {
+            InitializeComponent();  
             this.KeyPreview = true; // Cho phép Form nhận phím
             this.game_response = data_game;
             this.user_response = data_user;
-            lb_code.Text = game_response.Data["Code"].ToString();
+            lb_code.Text = "Room code \n" + data_game.Data["Code"].ToString();
             status = game_response.Data["Status"].ToString();
-            InitializeComponent();  
             DrawChessBoard();
+            HandleChess();
         }
 
-        public static async Task<Boolean> HandleChess()
+        public async Task<Boolean> HandleChess()
         {
-            //Console.WriteLine("Đang đợi request");
             while (true)
             {
                 Console.WriteLine("Đang đợi request");
                 var response = await ClientControllers.Reciver();
-                Console.WriteLine(response);
+                int chat_received_code = 31;
+                if (response.Code == chat_received_code)
+                {
+                    AppendMessage($"{user_response.Data["Name"]}> " + txtShowChat.Text);
+                    AppendMessage(response.Data["message"].ToString());
+                }
+                Console.WriteLine(response.Data);
             }
             return true;
         }
@@ -81,7 +88,6 @@ namespace clients
             if (!string.IsNullOrEmpty(message))
             {
                 await ClientControllers.Chat.SendMessage(game_response.Data["Id"].ToString(), user_response.Data["Id"].ToString(), message);
-                AppendMessage("You: " + message);
                 txtChat.Clear();
             }
         }
@@ -177,8 +183,7 @@ namespace clients
         {
             if (e.KeyCode == Keys.Escape)
             {
-                ExitGame();
-                
+                ExitGame();   
             }
         }
 

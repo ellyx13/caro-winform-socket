@@ -12,6 +12,7 @@ namespace clients
     {
 
         public static SocketClient client = new SocketClient("26.189.99.4", 5000);
+        //public static SocketClient client = new SocketClient("127.0.0.1", 5000);
         public static bool IsConnected = false;
 
         public static void Disconnect()
