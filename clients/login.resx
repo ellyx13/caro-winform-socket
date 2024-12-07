@@ -195,10 +195,10 @@
         X2lMxmycFADVTERua6tw6eWePf8AEb3tzrpWxdAAAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="txtPassword.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="txt_password.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="txtEmail.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="txt_email.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -207,7 +207,7 @@
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAB4AAAAQ4CAYAAADo08FDAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DgAACw4BQL7hQQAAvLhJREFUeF7s/TGvbFt6mOfyB/g33MjhDS8cMLvBBaiAwI0YUAwJNONmgykPAdmB
+        DQAACw0B7QfALAAAvLhJREFUeF7s/TGvbFt6mOfyB/g33MjhDS8cMLvBBaiAwI0YUAwJNONmgykPAdmB
         WpRhBzSuTCUSwYBEK2kG7qgBAe1W0ARIAbRBgQoEC4RTyc7P7dH7VGv23GPunrWqar5VNZ8PeACDq9Ze
         a6/zcqxR8zO3fuXHP/mrr//p/+9fwOFGe/qjoj9K+qOkP0r6o6Q/SvqjpD9K+qOkP0r6ozTa+5Xx//H/
         +H/9f+BwlxBnH4NH0x8l/VHSHyX9UdIfJf1R0h8l/VHSHyX9URrtWQCTcQBS0h8l/VHSHyX9UdIfJf1R

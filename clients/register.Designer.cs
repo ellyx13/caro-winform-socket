@@ -29,95 +29,96 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(register));
-            this.loginBtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.link_login = new System.Windows.Forms.Button();
+            this.btn_register = new System.Windows.Forms.Button();
+            this.txt_username = new System.Windows.Forms.TextBox();
+            this.txt_fullname = new System.Windows.Forms.TextBox();
+            this.txt_password = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // loginBtn
+            // link_login
             // 
-            this.loginBtn.AutoSize = true;
-            this.loginBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(52)))), ((int)(((byte)(69)))));
-            this.loginBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("loginBtn.BackgroundImage")));
-            this.loginBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.loginBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loginBtn.ForeColor = System.Drawing.Color.Black;
-            this.loginBtn.Location = new System.Drawing.Point(576, 744);
-            this.loginBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.loginBtn.Name = "loginBtn";
-            this.loginBtn.Size = new System.Drawing.Size(403, 16);
-            this.loginBtn.TabIndex = 9;
-            this.loginBtn.UseVisualStyleBackColor = false;
-            this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
+            this.link_login.AutoSize = true;
+            this.link_login.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(52)))), ((int)(((byte)(69)))));
+            this.link_login.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("link_login.BackgroundImage")));
+            this.link_login.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.link_login.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.link_login.ForeColor = System.Drawing.Color.Black;
+            this.link_login.Location = new System.Drawing.Point(720, 930);
+            this.link_login.Margin = new System.Windows.Forms.Padding(2);
+            this.link_login.Name = "link_login";
+            this.link_login.Size = new System.Drawing.Size(504, 20);
+            this.link_login.TabIndex = 9;
+            this.link_login.UseVisualStyleBackColor = false;
+            this.link_login.Click += new System.EventHandler(this.link_login_Click);
             // 
-            // button1
+            // btn_register
             // 
-            this.button1.AutoSize = true;
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(52)))), ((int)(((byte)(69)))));
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(52)))), ((int)(((byte)(69)))));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button1.Location = new System.Drawing.Point(587, 643);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(380, 88);
-            this.button1.TabIndex = 8;
-            this.button1.UseVisualStyleBackColor = false;
+            this.btn_register.AutoSize = true;
+            this.btn_register.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(52)))), ((int)(((byte)(69)))));
+            this.btn_register.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_register.BackgroundImage")));
+            this.btn_register.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_register.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_register.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(52)))), ((int)(((byte)(69)))));
+            this.btn_register.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btn_register.Location = new System.Drawing.Point(734, 804);
+            this.btn_register.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_register.Name = "btn_register";
+            this.btn_register.Size = new System.Drawing.Size(475, 110);
+            this.btn_register.TabIndex = 8;
+            this.btn_register.UseVisualStyleBackColor = false;
+            this.btn_register.Click += new System.EventHandler(this.btn_register_Click);
             // 
-            // textBox3
+            // txt_username
             // 
-            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.ForeColor = System.Drawing.Color.White;
-            this.textBox3.Location = new System.Drawing.Point(511, 410);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(531, 37);
-            this.textBox3.TabIndex = 7;
+            this.txt_username.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
+            this.txt_username.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_username.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_username.ForeColor = System.Drawing.Color.White;
+            this.txt_username.Location = new System.Drawing.Point(639, 512);
+            this.txt_username.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_username.Name = "txt_username";
+            this.txt_username.Size = new System.Drawing.Size(664, 46);
+            this.txt_username.TabIndex = 7;
             // 
-            // textBox2
+            // txt_fullname
             // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Cursor = System.Windows.Forms.Cursors.No;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.ForeColor = System.Drawing.Color.White;
-            this.textBox2.Location = new System.Drawing.Point(511, 276);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(531, 37);
-            this.textBox2.TabIndex = 6;
+            this.txt_fullname.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
+            this.txt_fullname.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_fullname.Cursor = System.Windows.Forms.Cursors.No;
+            this.txt_fullname.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_fullname.ForeColor = System.Drawing.Color.White;
+            this.txt_fullname.Location = new System.Drawing.Point(639, 345);
+            this.txt_fullname.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_fullname.Name = "txt_fullname";
+            this.txt_fullname.Size = new System.Drawing.Size(664, 46);
+            this.txt_fullname.TabIndex = 6;
             // 
-            // textBox4
+            // txt_password
             // 
-            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.ForeColor = System.Drawing.Color.White;
-            this.textBox4.Location = new System.Drawing.Point(511, 539);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(531, 37);
-            this.textBox4.TabIndex = 10;
+            this.txt_password.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
+            this.txt_password.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_password.ForeColor = System.Drawing.Color.White;
+            this.txt_password.Location = new System.Drawing.Point(639, 674);
+            this.txt_password.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_password.Name = "txt_password";
+            this.txt_password.Size = new System.Drawing.Size(664, 46);
+            this.txt_password.TabIndex = 10;
             // 
             // register
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1556, 884);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.loginBtn);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.ClientSize = new System.Drawing.Size(1942, 1102);
+            this.Controls.Add(this.txt_password);
+            this.Controls.Add(this.link_login);
+            this.Controls.Add(this.btn_register);
+            this.Controls.Add(this.txt_username);
+            this.Controls.Add(this.txt_fullname);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -131,10 +132,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Button loginBtn;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button link_login;
+        private System.Windows.Forms.Button btn_register;
+        private System.Windows.Forms.TextBox txt_username;
+        private System.Windows.Forms.TextBox txt_fullname;
+        private System.Windows.Forms.TextBox txt_password;
     }
 }

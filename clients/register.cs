@@ -12,12 +12,20 @@ namespace clients
 {
     public partial class register : Form
     {
-
+        private string fullname;
+        private string username;
+        private string password;
         public register()
         {
             InitializeComponent();
             this.KeyPreview = true; // Cho phép Form nhận phím
             this.KeyDown += MainForm_KeyDown;
+        }
+        public void set_data_register(string fullname, string username, string password)
+        {
+            this.fullname = fullname;
+            this.username = username;
+            this.password = password; 
         }
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
@@ -30,11 +38,17 @@ namespace clients
                 }
             }
         }
-        private void loginBtn_Click(object sender, EventArgs e)
+
+        private void link_login_Click(object sender, EventArgs e)
         {
             this.Hide();
             login login = new login();
             login.Show();
+        }
+
+        private void btn_register_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
