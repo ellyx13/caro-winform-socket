@@ -33,10 +33,6 @@ namespace clients
                 await _client.ConnectAsync(_serverIp, _serverPort);
                 _stream = _client.GetStream();
 
-                // Gửi ID tới server
-                //var idBytes = Encoding.UTF8.GetBytes("Hello");
-                //await _stream.WriteAsync(idBytes, 0, idBytes.Length);
-
                 Console.WriteLine($"Connected to server.");
                 return true;
             }

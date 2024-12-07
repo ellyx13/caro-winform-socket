@@ -105,6 +105,7 @@ namespace servers
 
                     var result = await _serverControllers.HandleRequest(request);
                     var response = Encoding.UTF8.GetBytes(result);
+                    Console.WriteLine("Response: ", response);
                     await stream.WriteAsync(response, 0, response.Length, token);
                 }
             }

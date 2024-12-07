@@ -58,6 +58,13 @@ namespace servers.Users
             return result;
         }
 
+        public async Task<bool> MinusMoney(string userId)
+        {
+            var user = await GetById(userId);
+            user.Credits = user.Credits - 10000;
+            return await UpdateById(userId, user);
+        }
+
         // Hàm xử lý đăng ký người dùng
         public async Task<string> RegisterUser(Dictionary<string, string> data)
         {
@@ -80,6 +87,29 @@ namespace servers.Users
             UsersModel user = await Save(fullname, username, password);
             var userData = user.ToDictionary();
             return Schemas.ToResponse(true, 12, "Register successed.", userData);
+        }
+
+        public async Task<string> LoginUser(Dictionary<string, string> data)
+        {
+            Console.WriteLine(data);
+            string username = data.ContainsKey("username") ? data["username"] : null;
+            string password = data.ContainsKey("password") ? data["password"] : null;
+
+            // Kiểm tra dữ liệu đầu vào
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                return UserExceptions.MissingField();
+            }
+
+            List<UsersModel> users = await GetByField("Email", username);
+            if (!users.Any())
+            {
+                return UserExceptions.UserNotFound();
+            }
+
+            UsersModel user = users[0];
+            var userData = user.ToDictionary();
+            return Schemas.ToResponse(true, 14, "Login successed.", userData);
         }
     }
 }
