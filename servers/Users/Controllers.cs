@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using servers.Database;
+
 namespace servers.Users
 {
     internal class UserControllers
@@ -91,7 +92,6 @@ namespace servers.Users
 
         public async Task<string> LoginUser(Dictionary<string, string> data)
         {
-            Console.WriteLine(data);
             string username = data.ContainsKey("username") ? data["username"] : null;
             string password = data.ContainsKey("password") ? data["password"] : null;
 

@@ -11,7 +11,8 @@ namespace clients
     internal class ClientControllers
     {
 
-        public static SocketClient client;
+        public static SocketClient client = new SocketClient("26.189.99.4", 5000);
+        public static bool IsConnected = false;
 
         public static void Disconnect()
         {
@@ -20,10 +21,22 @@ namespace clients
 
         public async static Task<Schemas.Response> Send(string request)
         {
+            Console.WriteLine("Is connected: {0}", IsConnected);
             // Kết nối tới server
-            client = new SocketClient("127.0.0.1", 5000);
-            await client.ConnectAsync();
+            if (IsConnected == false)
+            {
+                await client.ConnectAsync();
+                IsConnected = true;
+            }
+            
             await client.SendAsync(request);
+            var response = await client.ReceiveAsync();
+            return Schemas.ToDictionary(response);
+        }
+
+        public async static Task<Schemas.Response> Reciver()
+        {
+            Console.WriteLine("Waiting for request...");
             var response = await client.ReceiveAsync();
             return Schemas.ToDictionary(response);
         }
@@ -77,6 +90,21 @@ namespace clients
                 };
 
                 var request = Schemas.ToRequest(UserId, "games/join", data);
+                return await Send(request);
+            }
+        }
+
+        public static class Chat
+        {
+            public async static Task<Schemas.Response> SendMessage(string gameId, string UserId, string message)
+            {
+                var data = new Dictionary<string, object>
+                {
+                    { "gameId", gameId },
+                    { "message", message }
+                };
+
+                var request = Schemas.ToRequest(UserId, "chat", data);
                 return await Send(request);
             }
         }
