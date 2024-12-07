@@ -71,6 +71,7 @@
             // 
             // txt_username
             // 
+            this.txt_username.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_username.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
             this.txt_username.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_username.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -83,6 +84,7 @@
             // 
             // txt_fullname
             // 
+            this.txt_fullname.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_fullname.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
             this.txt_fullname.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_fullname.Cursor = System.Windows.Forms.Cursors.No;
@@ -96,6 +98,7 @@
             // 
             // txt_password
             // 
+            this.txt_password.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_password.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
             this.txt_password.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -125,6 +128,7 @@
             this.Name = "register";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "register";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -47,9 +47,9 @@ namespace clients
 
         public async void btnLogin_Click(object sender, EventArgs e)
         {
-            set_data_login(txt_email.Text, txt_password.Text);
-            var user1Login = await ClientControllers.Users.Login(email,password);
-            Console.WriteLine(user1Login);
+            //set_data_login(txt_email.Text, txt_password.Text);
+            //var user1Login = await ClientControllers.Users.Login(email,password);
+            //Console.WriteLine(user1Login);
 
             this.Hide();
             new MainForm().Show();
