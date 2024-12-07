@@ -37,5 +37,11 @@ namespace clients
             register form = new register();
             form.Show();
         }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new MainForm().Show();
+        }
     }
 }

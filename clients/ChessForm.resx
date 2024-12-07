@@ -127,13 +127,13 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pnlBoard.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 152</value>
+    <value>131, 190</value>
   </data>
   <data name="pnlBoard.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>1, 1, 1, 1</value>
   </data>
   <data name="pnlBoard.Size" type="System.Drawing.Size, System.Drawing">
-    <value>600, 584</value>
+    <value>750, 730</value>
   </data>
   <data name="pnlBoard.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -157,7 +157,7 @@
     <value>Times New Roman, 18pt</value>
   </data>
   <data name="txtShowChat.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 47</value>
+    <value>0, 59</value>
   </data>
   <data name="txtShowChat.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -166,7 +166,7 @@
     <value>True</value>
   </data>
   <data name="txtShowChat.Size" type="System.Drawing.Size, System.Drawing">
-    <value>418, 422</value>
+    <value>522, 528</value>
   </data>
   <data name="txtShowChat.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -190,7 +190,7 @@
     <value>Times New Roman, 18pt</value>
   </data>
   <data name="txtChat.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 498</value>
+    <value>4, 622</value>
   </data>
   <data name="txtChat.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -199,7 +199,7 @@
     <value>True</value>
   </data>
   <data name="txtChat.Size" type="System.Drawing.Size, System.Drawing">
-    <value>346, 61</value>
+    <value>432, 76</value>
   </data>
   <data name="txtChat.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -229,13 +229,13 @@
     <value>Flat</value>
   </data>
   <data name="btnSend.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2061, 1003</value>
+    <value>2576, 1254</value>
   </data>
   <data name="btnSend.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="btnSend.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 62</value>
+    <value>80, 78</value>
   </data>
   <data name="btnSend.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -265,13 +265,13 @@
     <value>NoControl</value>
   </data>
   <data name="btnEsc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>350, 497</value>
+    <value>438, 621</value>
   </data>
   <data name="btnEsc.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="btnEsc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 62</value>
+    <value>85, 78</value>
   </data>
   <data name="btnEsc.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -301,13 +301,13 @@
     <value>Flat</value>
   </data>
   <data name="btnEnter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1277, 1028</value>
+    <value>1596, 1285</value>
   </data>
   <data name="btnEnter.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="btnEnter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 69</value>
+    <value>171, 86</value>
   </data>
   <data name="btnEnter.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -328,7 +328,7 @@
     <value>None</value>
   </data>
   <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1051, 174</value>
+    <value>1314, 218</value>
   </data>
   <data name="panel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -337,7 +337,7 @@
     <value>1, 1, 1, 1</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>424, 562</value>
+    <value>530, 702</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -358,13 +358,16 @@
     <value>None</value>
   </data>
   <data name="textBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>761, 691</value>
+    <value>951, 864</value>
+  </data>
+  <data name="textBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="textBox1.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="textBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 78</value>
+    <value>310, 98</value>
   </data>
   <data name="textBox1.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -385,19 +388,19 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>96, 96</value>
+    <value>120, 120</value>
   </data>
   <data name="$this.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1540, 845</value>
+    <value>1925, 1056</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>10, 10, 10, 10</value>
+    <value>12, 12, 12, 12</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>

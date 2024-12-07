@@ -70,7 +70,7 @@
             // 
             resources.ApplyResources(this.btnSend, "btnSend");
             this.btnSend.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
-            this.btnSend.BackgroundImage = global::clients.Properties.Resources.send_1;
+            this.btnSend.BackgroundImage = global::clients.Properties.Resources.Group_13;
             this.btnSend.Name = "btnSend";
             this.btnSend.UseVisualStyleBackColor = false;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
@@ -79,7 +79,7 @@
             // 
             resources.ApplyResources(this.btnEsc, "btnEsc");
             this.btnEsc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
-            this.btnEsc.BackgroundImage = global::clients.Properties.Resources.send_1;
+            this.btnEsc.BackgroundImage = global::clients.Properties.Resources.Group_13;
             this.btnEsc.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
             this.btnEsc.Name = "btnEsc";
             this.btnEsc.UseVisualStyleBackColor = false;

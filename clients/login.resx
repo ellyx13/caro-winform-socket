@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="button1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="button1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -161,6 +164,9 @@
         GDSl1R2CwWAwGAwGg3fP2DgN3hdXV78BVovPZMXO18gAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="btnLogin.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="btnLogin.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAXwAAABYCAYAAAD2rUxeAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
@@ -189,13 +195,19 @@
         X2lMxmycFADVTERua6tw6eWePf8AEb3tzrpWxdAAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="txtPassword.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtEmail.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAB4AAAAQ4CAYAAADo08FDAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DwAACw8BkvkDpQAAvLhJREFUeF7s/TGvbFt6mOfyB/g33MjhDS8cMLvBBaiAwI0YUAwJNONmgykPAdmB
+        DgAACw4BQL7hQQAAvLhJREFUeF7s/TGvbFt6mOfyB/g33MjhDS8cMLvBBaiAwI0YUAwJNONmgykPAdmB
         WpRhBzSuTCUSwYBEK2kG7qgBAe1W0ARIAbRBgQoEC4RTyc7P7dH7VGv23GPunrWqar5VNZ8PeACDq9Ze
         a6/zcqxR8zO3fuXHP/mrr//p/+9fwOFGe/qjoj9K+qOkP0r6o6Q/SvqjpD9K+qOkP0r6ozTa+5Xx//H/
         +H/9f+BwlxBnH4NH0x8l/VHSHyX9UdIfJf1R0h8l/VHSHyX9URrtWQCTcQBS0h8l/VHSHyX9UdIfJf1R
