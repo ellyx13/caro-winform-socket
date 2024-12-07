@@ -68,6 +68,9 @@
     <Reference Include="MongoDB.Driver, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94992a530f44e321, processorArchitecture=MSIL">
       <HintPath>..\packages\MongoDB.Driver.3.0.0\lib\net472\MongoDB.Driver.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="SharpCompress, Version=0.30.1.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpCompress.0.30.1\lib\net461\SharpCompress.dll</HintPath>
     </Reference>
@@ -251,14 +254,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers.cs" />
     <Compile Include="Database\BaseCRUD.cs" />
     <Compile Include="Database\Config.cs" />
+    <Compile Include="Exceptions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Games\Controllers.cs" />
     <Compile Include="Games\Model.cs" />
+    <Compile Include="Schemas.cs" />
     <Compile Include="Socket.cs" />
     <Compile Include="Users\Controllers.cs" />
+    <Compile Include="Users\Exceptions.cs" />
     <Compile Include="Users\Model.cs" />
   </ItemGroup>
   <ItemGroup>

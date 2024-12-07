@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace servers
 {
@@ -15,10 +16,12 @@ namespace servers
         private TcpListener _server;
         private readonly ConcurrentDictionary<string, TcpClient> _clients;
         private CancellationTokenSource _cancellationTokenSource;
+        private ServerControllers _serverControllers;
 
         public SocketServer()
         {
             _clients = new ConcurrentDictionary<string, TcpClient>();
+            _serverControllers = new ServerControllers();
         }
 
         public void Start(string ipAddress, int port)
@@ -52,7 +55,7 @@ namespace servers
                 while (!token.IsCancellationRequested)
                 {
                     var client = await _server.AcceptTcpClientAsync();
-                    Console.WriteLine("Client connected.");
+                    Console.WriteLine("User connected.");
 
                     _ = HandleClientAsync(client, token); // Xử lý client trong task riêng
                 }
@@ -63,6 +66,11 @@ namespace servers
             }
         }
 
+        public static Schemas.Request ToDictionary(string jsonString)
+        {
+            return JsonConvert.DeserializeObject<Schemas.Request>(jsonString);
+        }
+
         private async Task HandleClientAsync(TcpClient client, CancellationToken token)
         {
             var stream = client.GetStream();
@@ -70,18 +78,7 @@ namespace servers
 
             try
             {
-                // Nhận ID từ client
-                int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, token);
-                var clientId = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim();
-
-                if (!_clients.TryAdd(clientId, client))
-                {
-                    Console.WriteLine($"Client ID {clientId} already exists. Closing connection.");
-                    client.Close();
-                    return;
-                }
-
-                Console.WriteLine($"Client registered with ID: {clientId}");
+                int bytesRead;
 
                 // Xử lý giao tiếp với client
                 while (!token.IsCancellationRequested)
@@ -90,16 +87,30 @@ namespace servers
                     if (bytesRead == 0) break; // Client đóng kết nối
 
                     var request = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                    Console.WriteLine($"Received from {clientId}: {request}");
+                    Console.WriteLine($"Received: {request}");
+                    var data = ToDictionary(request);
+                    Console.WriteLine(data);
+                    string userId = data.UserId;
+                    if (!string.IsNullOrEmpty(userId))
+                    {
+                        if (!_clients.TryAdd(userId, client))
+                        {
+                            Console.WriteLine($"User ID {userId} already exists. Closing connection.");
+                            client.Close();
+                            return;
+                        }
+                    }
+                    
+                    Console.WriteLine($"Received from {userId}: {data}");
 
-                    // Gửi phản hồi
-                    var response = Encoding.UTF8.GetBytes($"Hello {clientId}, server received: {request}");
+                    var result = await _serverControllers.HandleRequest(request);
+                    var response = Encoding.UTF8.GetBytes(result);
                     await stream.WriteAsync(response, 0, response.Length, token);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error with client: {ex.Message}");
+                Console.WriteLine($"Error when handle request: {ex.Message}");
             }
             finally
             {

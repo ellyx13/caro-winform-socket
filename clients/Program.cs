@@ -6,19 +6,17 @@ using System.Windows.Forms;
 
 namespace clients
 {
-    internal static class Program
+    class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             /*-- Này là code hiện giao diện winform --*/
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
 
+            //await TestSocket.Test();
+            //Console.ReadLine();
         }
     }
 }
