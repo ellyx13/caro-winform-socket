@@ -12,7 +12,6 @@ namespace clients
         {
             await TestSocketHost.Test();
             Console.ReadLine();
-            Console.ReadLine();
         }
     }
 }

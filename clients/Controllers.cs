@@ -11,7 +11,8 @@ namespace clients
     internal class ClientControllers
     {
 
-        public static SocketClient client;
+        public static SocketClient client = new SocketClient("127.0.0.1", 5000);
+        public static bool IsConnected = false;
 
         public static void Disconnect()
         {
@@ -21,9 +22,23 @@ namespace clients
         public async static Task<Schemas.Response> Send(string request)
         {
             // Kết nối tới server
-            client = new SocketClient("127.0.0.1", 5000);
-            await client.ConnectAsync();
+            if (IsConnected is false)
+            {
+                await client.ConnectAsync();
+            }
+            else
+            {
+                IsConnected = true;
+            }
+            
             await client.SendAsync(request);
+            var response = await client.ReceiveAsync();
+            return Schemas.ToDictionary(response);
+        }
+
+        public async static Task<Schemas.Response> Reciver()
+        {
+            Console.WriteLine("Waiting for request...");
             var response = await client.ReceiveAsync();
             return Schemas.ToDictionary(response);
         }

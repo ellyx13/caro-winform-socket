@@ -26,7 +26,14 @@ namespace clients
 
             string gameId = game.Data["Id"].ToString();
 
-            var chat = await ClientControllers.Chat.SendMessage(gameId, guestId, "Hello");
+            while (true)
+            {
+                var chat = await ClientControllers.Chat.SendMessage(gameId, guestId, "Hello");
+                var response = await ClientControllers.Reciver();
+                Console.WriteLine(response);
+            }
+
+            
 
             // Ngắt kết nối
             ClientControllers.Disconnect();

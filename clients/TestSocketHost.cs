@@ -22,6 +22,12 @@ namespace clients
             var game = await ClientControllers.Games.CreateGame("Game 1", hostId);
             Console.WriteLine(game);
 
+            while (true)
+            {
+                var response = await ClientControllers.Reciver();
+                Console.WriteLine(response);
+            }
+
             Console.ReadLine();
 
             // Ngắt kết nối

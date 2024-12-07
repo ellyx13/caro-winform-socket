@@ -118,6 +118,12 @@ namespace servers
                             if (_clients.TryGetValue(receiverId, out TcpClient anotherClient))
                             {
                                 var anotherStream = anotherClient.GetStream();
+                                var dataSender = new Dictionary<string, object>
+                                {
+                                    { "message", message },
+                                    { "senderId", requestParse.UserId }
+                                };
+                                string response = Schemas.ToResponse(true, 30, "New message", dataSender);
                                 var messageBytes = Encoding.UTF8.GetBytes(message);
                                 await anotherStream.WriteAsync(messageBytes, 0, messageBytes.Length, token);
                             }
