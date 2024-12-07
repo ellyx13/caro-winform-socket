@@ -40,6 +40,15 @@ namespace clients
         {
             string guestId = data_user.Data["Id"].ToString();
             var joinGame = await ClientControllers.Games.JoinGame(txt_roomcode.Text, guestId);
+            int game_join_success_code = 22;
+            int game_notfound_code = 20;
+            int game_isplay_code = 24;
+            int game_isend_code = 25;
+            if(joinGame.Code == game_join_success_code)
+            {
+                new ChessForm(joinGame).Show();
+                this.Close();
+            }
         }
 
         private void lb_money_Click(object sender, EventArgs e)

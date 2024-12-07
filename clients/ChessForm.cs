@@ -21,10 +21,15 @@ namespace clients
 
         private Button[,] chessBoard;
         private bool isPlayer1Turn = true;
-
-        public ChessForm()
+        public string status;
+        public Schemas.Response game_response;
+        public Schemas.Response user_response;
+        public ChessForm(Schemas.Response data_game, Schemas.Response data_user)
         {
             this.KeyPreview = true; // Cho phép Form nhận phím
+            this.game_response = data_game;
+            this.user_response = data_user;
+            status = game_response.Data["Status"].ToString();
             InitializeComponent();
             DrawChessBoard();
         }
@@ -45,9 +50,17 @@ namespace clients
                         Font = new Font("Times New Roman", 25, FontStyle.Bold),
                         Tag = new Point(i, j)
                     };
-                    btn.Click += Cell_Click;
-                    pnlBoard.Controls.Add(btn);
-                    chessBoard[i, j] = btn;
+                    if (status != "waiting")
+                    {
+                        btn.Click += Cell_Click;
+                        pnlBoard.Controls.Add(btn);
+                        chessBoard[i, j] = btn;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Game đang ở trạng thái chờ, bạn không thể thực hiện nước đi.");
+                        return;
+                    }
                 }
             }
         }
@@ -62,7 +75,7 @@ namespace clients
             string message = txtChat.Text.Trim();
             if (!string.IsNullOrEmpty(message))
             {
-                // Gửi tin nhắn đến server (implement socket/SignalR)
+                ClientControllers.Chat.SendMessage(game_response.Data["Id"].ToString(), user_response.Data["Id"].ToString(), message);
                 AppendMessage("You: " + message);
                 txtChat.Clear();
             }
@@ -169,6 +182,8 @@ namespace clients
             var result = MessageBox.Show("Bạn có chắc chắn muốn thoát trò chơi?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
+                ClientControllers.Games.Winner(game_response.Data["Id"].ToString(), user_response.Data["Id"].ToString());
+                ClientControllers.Disconnect();
                 Application.Exit();
             }
         }

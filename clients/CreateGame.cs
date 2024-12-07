@@ -43,7 +43,7 @@ namespace clients
             int create_success_code = 23;
             if(game.Code == create_success_code)
             {
-                new ChessForm().Show();
+                new ChessForm(game, data_user).Show();
                 this.Close();
             }
         }
