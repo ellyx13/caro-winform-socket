@@ -5,11 +5,11 @@ using servers.Database;
 
 namespace servers.Games
 {
-    internal class GameControlers
+    internal class GameControllers
     {
         private readonly BaseCRUD crud;
 
-        public GameControlers()
+        public GameControllers()
         {
             crud = new BaseCRUD(Config.DatabaseUrl, Config.DatabaseName, "games");
         }

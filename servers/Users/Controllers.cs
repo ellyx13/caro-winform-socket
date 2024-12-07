@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using servers.Database;
 namespace servers.Users
 {
-    internal class UserControlers
+    internal class UserControllers
     {
         private readonly BaseCRUD crud;
 
-        public UserControlers()
+        public UserControllers()
         {
             crud = new BaseCRUD(Config.DatabaseUrl, Config.DatabaseName, "users");
         }
@@ -49,13 +49,37 @@ namespace servers.Users
                 Name = fullname,
                 Email = email,
                 Password = password,
-                Credits = 100_000 // Mặc định là 100.000
+                Credits = 100000 // Mặc định là 100.000
             };
 
             // Lưu user vào cơ sở dữ liệu
             var result = await crud.Save(user);
 
             return result;
+        }
+
+        // Hàm xử lý đăng ký người dùng
+        public async Task<string> RegisterUser(Dictionary<string, string> data)
+        {
+            string fullname = data.ContainsKey("fullname") ? data["fullname"] : null;
+            string username = data.ContainsKey("username") ? data["username"] : null;
+            string password = data.ContainsKey("password") ? data["password"] : null;
+
+            // Kiểm tra dữ liệu đầu vào
+            if (string.IsNullOrEmpty(fullname) || string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                return UserExceptions.MissingField();
+            }
+
+            List<UsersModel> users = await GetByField("Email", username);
+            if (users.Any())
+            {
+                return UserExceptions.UserExist();
+            }
+
+            UsersModel user = await Save(fullname, username, password);
+            var userData = user.ToDictionary();
+            return Schemas.ToResponse(true, 12, "Register successed.", userData);
         }
     }
 }
