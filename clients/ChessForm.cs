@@ -29,6 +29,7 @@ namespace clients
             this.KeyPreview = true; // Cho phép Form nhận phím
             this.game_response = data_game;
             this.user_response = data_user;
+            lb_code.Text = game_response.Data["Code"].ToString();
             status = game_response.Data["Status"].ToString();
             InitializeComponent();  
             DrawChessBoard();
@@ -218,6 +219,11 @@ namespace clients
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lb_code_Click(object sender, EventArgs e)
         {
 
         }

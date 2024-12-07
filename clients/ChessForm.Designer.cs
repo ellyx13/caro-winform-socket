@@ -36,7 +36,7 @@
             this.btnEsc = new System.Windows.Forms.Button();
             this.btnEnter = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lb_code = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -103,20 +103,20 @@
             this.panel1.Controls.Add(this.txtChat);
             this.panel1.Name = "panel1";
             // 
-            // textBox1
+            // lb_code
             // 
-            resources.ApplyResources(this.textBox1, "textBox1");
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(52)))), ((int)(((byte)(69)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
+            resources.ApplyResources(this.lb_code, "lb_code");
+            this.lb_code.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(52)))), ((int)(((byte)(69)))));
+            this.lb_code.ForeColor = System.Drawing.Color.White;
+            this.lb_code.Name = "lb_code";
+            this.lb_code.Click += new System.EventHandler(this.lb_code_Click);
             // 
             // ChessForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackgroundImage = global::clients.Properties.Resources.Chess__2_;
-            this.Controls.Add(this.textBox1);
+            this.BackgroundImage = global::clients.Properties.Resources.Chess_Form_Background;
+            this.Controls.Add(this.lb_code);
             this.Controls.Add(this.btnEnter);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.pnlBoard);
@@ -144,6 +144,6 @@
         private System.Windows.Forms.Button btnEsc;
         private System.Windows.Forms.Button btnEnter;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label lb_code;
     }
 }

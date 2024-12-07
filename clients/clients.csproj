@@ -225,5 +225,8 @@
   <ItemGroup>
     <None Include="Resources\Join_Game_Background.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Chess_Form_Background.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
