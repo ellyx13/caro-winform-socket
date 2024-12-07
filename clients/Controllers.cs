@@ -80,5 +80,20 @@ namespace clients
                 return await Send(request);
             }
         }
+
+        public static class Chat
+        {
+            public async static Task<Schemas.Response> SendMessage(string gameId, string UserId, string message)
+            {
+                var data = new Dictionary<string, object>
+                {
+                    { "gameId", gameId },
+                    { "message", message }
+                };
+
+                var request = Schemas.ToRequest(UserId, "chat", data);
+                return await Send(request);
+            }
+        }
     }
 }

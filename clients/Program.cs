@@ -10,7 +10,8 @@ namespace clients
     {
         static async Task Main(string[] args)
         {
-            await TestSocket.Test();
+            await TestSocketHost.Test();
+            Console.ReadLine();
             Console.ReadLine();
         }
     }

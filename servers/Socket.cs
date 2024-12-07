@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using servers.Chat;
+using Sprache;
 
 namespace servers
 {
@@ -17,11 +19,13 @@ namespace servers
         private readonly ConcurrentDictionary<string, TcpClient> _clients;
         private CancellationTokenSource _cancellationTokenSource;
         private ServerControllers _serverControllers;
+        private ChatControllers _chatControllers;
 
         public SocketServer()
         {
             _clients = new ConcurrentDictionary<string, TcpClient>();
             _serverControllers = new ServerControllers();
+            _chatControllers = new ChatControllers();
         }
 
         public void Start(string ipAddress, int port)
@@ -89,24 +93,43 @@ namespace servers
                     var request = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                     Console.WriteLine($"Received: {request}");
                     var data = ToDictionary(request);
-                    Console.WriteLine(data);
                     string userId = data.UserId;
                     if (!string.IsNullOrEmpty(userId))
                     {
                         if (!_clients.TryAdd(userId, client))
                         {
                             Console.WriteLine($"User ID {userId} already exists. Closing connection.");
-                            client.Close();
+                            DisconnectClient(client);
                             return;
                         }
                     }
                     
                     Console.WriteLine($"Received from {userId}: {data}");
-
-                    var result = await _serverControllers.HandleRequest(request);
-                    var response = Encoding.UTF8.GetBytes(result);
-                    Console.WriteLine("Response: ", response);
-                    await stream.WriteAsync(response, 0, response.Length, token);
+                    var requestParse = JsonConvert.DeserializeObject<Schemas.Request>(request);
+                    if (requestParse.Route == "chat")
+                    {
+                        string message = requestParse.Data["message"].ToString();
+                        string gameId = requestParse.Data["gameId"].ToString();
+                        string receiverId = await _chatControllers.GetReceiverId(requestParse.UserId, requestParse.Data["gameId"].ToString());
+                        if (!string.IsNullOrEmpty(receiverId))
+                        {
+                            await _chatControllers.Save(gameId, requestParse.UserId, receiverId, message);
+                            // Send message to another user
+                            if (_clients.TryGetValue(receiverId, out TcpClient anotherClient))
+                            {
+                                var anotherStream = anotherClient.GetStream();
+                                var messageBytes = Encoding.UTF8.GetBytes(message);
+                                await anotherStream.WriteAsync(messageBytes, 0, messageBytes.Length, token);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        var result = await _serverControllers.HandleRequest(request);
+                        var response = Encoding.UTF8.GetBytes(result);
+                        Console.WriteLine("Response: ", response);
+                        await stream.WriteAsync(response, 0, response.Length, token);
+                    }
                 }
             }
             catch (Exception ex)

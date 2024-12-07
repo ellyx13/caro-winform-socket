@@ -254,6 +254,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chat\Controllers.cs" />
+    <Compile Include="Chat\Model.cs" />
     <Compile Include="Controllers.cs" />
     <Compile Include="Database\BaseCRUD.cs" />
     <Compile Include="Database\Config.cs" />
