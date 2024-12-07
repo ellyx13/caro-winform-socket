@@ -104,10 +104,15 @@ namespace servers.Users
             List<UsersModel> users = await GetByField("Email", username);
             if (!users.Any())
             {
-                return UserExceptions.UserNotFound();
+                return UserExceptions.AuthenFailed();
             }
 
             UsersModel user = users[0];
+            if (user.Password != password)
+            {
+                return UserExceptions.AuthenFailed();
+            }
+
             var userData = user.ToDictionary();
             return Schemas.ToResponse(true, 14, "Login successed.", userData);
         }
