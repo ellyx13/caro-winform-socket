@@ -136,6 +136,7 @@ namespace clients
         {
             CreateGame game = new CreateGame();
             game.ShowDialog();
+            this.Close();
         }
 
         private void helpBtn_Click(object sender, EventArgs e)
@@ -146,7 +147,13 @@ namespace clients
 
         private void exitBtn_Click(object sender, EventArgs e)
         {
+            Application.Exit();
             this.Close();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

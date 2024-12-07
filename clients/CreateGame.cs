@@ -12,6 +12,7 @@ namespace clients
 {
     public partial class CreateGame : Form
     {
+        MainForm mainForm;
         public CreateGame()
         {
             InitializeComponent();
@@ -23,6 +24,8 @@ namespace clients
             if (e.KeyCode == Keys.Escape) // Kiểm tra nếu phím là Esc
             {
                 this.Close(); // Đóng Form hiện tại
+                MainForm mainForm = new MainForm();
+                mainForm.Show();
             }
             else if (e.KeyCode == Keys.Enter) // Kiểm tra nếu phím là Enter
             {
@@ -34,6 +37,8 @@ namespace clients
         private void creatBtn_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Tính năng đang phát triển");
+            new ChessForm().Show();
+            this.Close();
         }
     }
 }

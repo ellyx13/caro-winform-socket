@@ -160,6 +160,7 @@ namespace clients
             if (e.KeyCode == Keys.Escape)
             {
                 ExitGame();
+                
             }
         }
 
@@ -168,7 +169,7 @@ namespace clients
             var result = MessageBox.Show("Bạn có chắc chắn muốn thoát trò chơi?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                this.Close();
+                Application.Exit();
             }
         }
 

@@ -212,5 +212,11 @@
   <ItemGroup>
     <None Include="Resources\Group 13 %282%29.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Send_Chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AuthorsBackground.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

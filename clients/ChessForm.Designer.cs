@@ -79,7 +79,7 @@
             // 
             resources.ApplyResources(this.btnEsc, "btnEsc");
             this.btnEsc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
-            this.btnEsc.BackgroundImage = global::clients.Properties.Resources.Group_13;
+            this.btnEsc.BackgroundImage = global::clients.Properties.Resources.Send_Chat;
             this.btnEsc.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
             this.btnEsc.Name = "btnEsc";
             this.btnEsc.UseVisualStyleBackColor = false;

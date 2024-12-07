@@ -39,6 +39,7 @@
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
@@ -54,9 +55,10 @@
             this.joinBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.joinBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.joinBtn.ForeColor = System.Drawing.Color.Transparent;
-            this.joinBtn.Location = new System.Drawing.Point(674, 374);
+            this.joinBtn.Location = new System.Drawing.Point(899, 460);
+            this.joinBtn.Margin = new System.Windows.Forms.Padding(4);
             this.joinBtn.Name = "joinBtn";
-            this.joinBtn.Size = new System.Drawing.Size(303, 81);
+            this.joinBtn.Size = new System.Drawing.Size(404, 100);
             this.joinBtn.TabIndex = 2;
             this.joinBtn.UseVisualStyleBackColor = false;
             this.joinBtn.Click += new System.EventHandler(this.joinBtn_Click);
@@ -73,9 +75,10 @@
             this.createBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.createBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.createBtn.ForeColor = System.Drawing.Color.Transparent;
-            this.createBtn.Location = new System.Drawing.Point(674, 245);
+            this.createBtn.Location = new System.Drawing.Point(899, 320);
+            this.createBtn.Margin = new System.Windows.Forms.Padding(4);
             this.createBtn.Name = "createBtn";
-            this.createBtn.Size = new System.Drawing.Size(303, 94);
+            this.createBtn.Size = new System.Drawing.Size(404, 100);
             this.createBtn.TabIndex = 1;
             this.createBtn.UseVisualStyleBackColor = false;
             this.createBtn.Click += new System.EventHandler(this.createBtn_Click);
@@ -92,9 +95,10 @@
             this.authorBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.authorBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.authorBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.authorBtn.Location = new System.Drawing.Point(674, 491);
+            this.authorBtn.Location = new System.Drawing.Point(899, 604);
+            this.authorBtn.Margin = new System.Windows.Forms.Padding(4);
             this.authorBtn.Name = "authorBtn";
-            this.authorBtn.Size = new System.Drawing.Size(303, 81);
+            this.authorBtn.Size = new System.Drawing.Size(404, 100);
             this.authorBtn.TabIndex = 3;
             this.authorBtn.UseVisualStyleBackColor = false;
             this.authorBtn.Click += new System.EventHandler(this.authorBtn_Click);
@@ -111,9 +115,10 @@
             this.helpBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.helpBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.helpBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.helpBtn.Location = new System.Drawing.Point(674, 608);
+            this.helpBtn.Location = new System.Drawing.Point(899, 748);
+            this.helpBtn.Margin = new System.Windows.Forms.Padding(4);
             this.helpBtn.Name = "helpBtn";
-            this.helpBtn.Size = new System.Drawing.Size(303, 81);
+            this.helpBtn.Size = new System.Drawing.Size(404, 100);
             this.helpBtn.TabIndex = 4;
             this.helpBtn.UseVisualStyleBackColor = false;
             this.helpBtn.Click += new System.EventHandler(this.helpBtn_Click);
@@ -130,20 +135,21 @@
             this.exitBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exitBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.exitBtn.Location = new System.Drawing.Point(674, 725);
+            this.exitBtn.Location = new System.Drawing.Point(899, 892);
+            this.exitBtn.Margin = new System.Windows.Forms.Padding(4);
             this.exitBtn.Name = "exitBtn";
-            this.exitBtn.Size = new System.Drawing.Size(303, 81);
+            this.exitBtn.Size = new System.Drawing.Size(404, 100);
             this.exitBtn.TabIndex = 5;
             this.exitBtn.UseVisualStyleBackColor = false;
             this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::clients.Properties.Resources.Home;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1620, 920);
+            this.ClientSize = new System.Drawing.Size(1942, 1102);
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.helpBtn);
             this.Controls.Add(this.authorBtn);
@@ -151,10 +157,12 @@
             this.Controls.Add(this.joinBtn);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
