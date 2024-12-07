@@ -13,6 +13,7 @@ namespace servers.Games
         public string Id { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
+        public string Status { get; set; } // "waiting", "playing", "end"
         public string Host { get; set; }
         public string Guest { get; set; } = null;
         public bool? IsHostWin { get; set; } = null;
@@ -29,6 +30,7 @@ namespace servers.Games
                 { "Id", Id },
                 { "Name", Name },
                 { "Code", Code },
+                { "Status", Status },
                 { "Host", Host },
                 { "Guest", Guest },
                 { "IsHostWin", IsHostWin },

@@ -31,7 +31,7 @@ namespace servers.Games
             var exception = new GameExceptions
             {
                 Success = false,
-                Code = 21,
+                Code = 25,
                 Message = "Game is end."
             };
 
@@ -39,5 +39,17 @@ namespace servers.Games
             return JsonConvert.SerializeObject(exception);
         }
 
+        public static string GameIsPlaying()
+        {
+            var exception = new GameExceptions
+            {
+                Success = false,
+                Code = 24,
+                Message = "Game is playing."
+            };
+
+            // Chuyển đổi đối tượng thành chuỗi JSON
+            return JsonConvert.SerializeObject(exception);
+        }
     }
 }

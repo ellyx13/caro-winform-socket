@@ -66,6 +66,13 @@ namespace servers.Users
             return await UpdateById(userId, user);
         }
 
+        public async Task<bool> PlusMoneyForWinner(string userId)
+        {
+            var user = await GetById(userId);
+            user.Credits = user.Credits + 10000;
+            return await UpdateById(userId, user);
+        }
+
         // Hàm xử lý đăng ký người dùng
         public async Task<string> RegisterUser(Dictionary<string, string> data)
         {

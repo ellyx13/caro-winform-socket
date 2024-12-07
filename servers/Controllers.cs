@@ -11,6 +11,7 @@ using System.Text;
 using System.Collections.Concurrent;
 using System.Threading;
 using Sprache;
+using MongoDB.Driver.Core.Events;
 
 
 namespace servers
@@ -56,7 +57,42 @@ namespace servers
                                 { "senderId", userId }
                             };
 
-                        result = Schemas.ToResponse(true, 30, "New message", dataSender);
+                        var resultReceiver = Schemas.ToResponse(true, 31, "New message.", dataSender);
+                        await SocketServer.SendMessage(anotherStream, token, resultReceiver);
+
+                        Console.WriteLine($"Send message to {receiverId}: {message}");
+                        result = Schemas.ToResponse(true, 30, "Message sended.", dataSender);
+                        break;
+                    }
+                case "games/winner":
+                    {
+                        string gameId = request.Data["gameId"].ToString();
+                        string winner = request.UserId;
+                        result = await _gameController.SetWinner(gameId, winner);
+                        break;
+                    }
+                case "games/move":
+                    {
+                        string gameId = request.Data["gameId"].ToString();
+                        string userId = request.UserId;
+                        int x = int.Parse(request.Data["x"].ToString());
+                        int y = int.Parse(request.Data["y"].ToString());
+
+                        string receiverId = await _chatController.GetReceiverId(userId, gameId);
+                        clients.TryGetValue(receiverId, out TcpClient anotherClient);
+                        var anotherStream = anotherClient.GetStream();
+                        var dataReceiver = new Dictionary<string, object>
+                            {
+                                { "GameId", gameId },
+                                { "userMakeMove", userId },
+                                { "x", x },
+                                { "y", y }
+                            };
+
+                        var resultReceiver = Schemas.ToResponse(true, 27, "New move.", dataReceiver);
+                        await SocketServer.SendMessage(anotherStream, token, resultReceiver);
+
+                        result = _gameController.MakeMove(gameId, userId, x, y);
                         break;
                     }
                 case "users/register":
