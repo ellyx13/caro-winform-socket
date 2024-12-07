@@ -18,6 +18,16 @@ namespace clients
             client.Disconnect();
         }
 
+        public async static Task<Schemas.Response> Send(string request)
+        {
+            // Kết nối tới server
+            client = new SocketClient("127.0.0.1", 5000);
+            await client.ConnectAsync();
+            await client.SendAsync(request);
+            var response = await client.ReceiveAsync();
+            return Schemas.ToDictionary(response);
+        }
+
         public static class Users
         {
             public async static Task<Schemas.Response> Register(string fullname, string username, string password)
@@ -30,13 +40,7 @@ namespace clients
                 };
 
                 var request = Schemas.ToRequest(null, "users/register", data);
-
-                // Kết nối tới server
-                client = new SocketClient("127.0.0.1", 5000);
-                await client.ConnectAsync();
-                await client.SendAsync(request);
-                var response = await client.ReceiveAsync();
-                return Schemas.ToDictionary(response);
+                return await Send(request);
             }
 
             public async static Task<Schemas.Response> Login(string username, string password)
@@ -48,11 +52,32 @@ namespace clients
                 };
 
                 var request = Schemas.ToRequest(null, "users/login", data);
-                client = new SocketClient("127.0.0.1", 5000);
-                await client.ConnectAsync();
-                await client.SendAsync(request);
-                var response = await client.ReceiveAsync();
-                return Schemas.ToDictionary(response);
+                return await Send(request);
+            }
+        }
+
+        public static class Games
+        {
+            public async static Task<Schemas.Response> CreateGame(string gameName, string UserId)
+            {
+                var data = new Dictionary<string, object>
+                {
+                    { "gameName", gameName }
+                };
+
+                var request = Schemas.ToRequest(UserId, "games/create", data);
+                return await Send(request);
+            }
+
+            public async static Task<Schemas.Response> JoinGame(string gameCode, string UserId)
+            {
+                var data = new Dictionary<string, object>
+                {
+                    { "gameCode", gameCode }
+                };
+
+                var request = Schemas.ToRequest(UserId, "games/join", data);
+                return await Send(request);
             }
         }
     }
