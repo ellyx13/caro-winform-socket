@@ -37,5 +37,17 @@ namespace servers.Users
 
             return JsonConvert.SerializeObject(exception);
         }
+
+        public static string UserNotFound()
+        {
+            var exception = new UserExceptions
+            {
+                Success = false,
+                Code = 13,
+                Message = "User not found."
+            };
+
+            return JsonConvert.SerializeObject(exception);
+        }
     }
 }
