@@ -49,9 +49,9 @@
             // 
             // txtShowChat
             // 
+            resources.ApplyResources(this.txtShowChat, "txtShowChat");
             this.txtShowChat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
             this.txtShowChat.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            resources.ApplyResources(this.txtShowChat, "txtShowChat");
             this.txtShowChat.ForeColor = System.Drawing.Color.White;
             this.txtShowChat.Name = "txtShowChat";
             this.txtShowChat.ReadOnly = true;
@@ -105,9 +105,9 @@
             // 
             // textBox1
             // 
+            resources.ApplyResources(this.textBox1, "textBox1");
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(52)))), ((int)(((byte)(69)))));
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            resources.ApplyResources(this.textBox1, "textBox1");
             this.textBox1.Name = "textBox1";
             // 
             // ChessForm
