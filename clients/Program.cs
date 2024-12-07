@@ -13,7 +13,7 @@ namespace clients
             /*-- Này là code hiện giao diện winform --*/
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ChessForm());
+            Application.Run(new login());
 
             //await TestSocket.Test();
             //Console.ReadLine();

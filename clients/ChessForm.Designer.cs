@@ -113,7 +113,7 @@
             // ChessForm
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackgroundImage = global::clients.Properties.Resources.Chess__2_;
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnEnter);
