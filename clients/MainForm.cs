@@ -4,10 +4,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using Newtonsoft.Json.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using Newtonsoft.Json;
 
 namespace clients
 {
@@ -27,6 +29,12 @@ namespace clients
         {
             JoinGame join = new JoinGame(data_user);
             join.Show();
+        }
+
+        private void createBtn_Click(object sender, EventArgs e)
+        {
+            CreateGame game = new CreateGame(data_user);
+            game.Show();
         }
 
         private void authorBtn_Click(object sender, EventArgs e)
@@ -133,14 +141,6 @@ namespace clients
                 MessageBox.Show($"Kích hoạt điều khiển: {targetControl.Name}");
             }
         }
-
-        private void createBtn_Click(object sender, EventArgs e)
-        {
-            CreateGame game = new CreateGame(data_user);
-            game.ShowDialog();
-            this.Close();
-        }
-
         private void helpBtn_Click(object sender, EventArgs e)
         {
             Help help = new Help();

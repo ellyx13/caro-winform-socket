@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.joinBtn = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt_roomcode = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.lb_money = new System.Windows.Forms.Label();
@@ -56,20 +56,20 @@
             this.joinBtn.UseVisualStyleBackColor = false;
             this.joinBtn.Click += new System.EventHandler(this.joinBtn_Click);
             // 
-            // textBox1
+            // txt_roomcode
             // 
-            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(645, 423);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(637, 46);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.Text = "213";
+            this.txt_roomcode.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_roomcode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
+            this.txt_roomcode.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_roomcode.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_roomcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_roomcode.ForeColor = System.Drawing.Color.White;
+            this.txt_roomcode.Location = new System.Drawing.Point(645, 423);
+            this.txt_roomcode.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_roomcode.Name = "txt_roomcode";
+            this.txt_roomcode.Size = new System.Drawing.Size(637, 46);
+            this.txt_roomcode.TabIndex = 3;
+            this.txt_roomcode.Text = "213";
             // 
             // contextMenuStrip1
             // 
@@ -85,13 +85,15 @@
             // 
             // lb_money
             // 
+            this.lb_money.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lb_money.AutoSize = true;
             this.lb_money.BackColor = System.Drawing.Color.Transparent;
             this.lb_money.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_money.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lb_money.Location = new System.Drawing.Point(943, 871);
+            this.lb_money.Location = new System.Drawing.Point(914, 865);
             this.lb_money.Name = "lb_money";
-            this.lb_money.Size = new System.Drawing.Size(145, 48);
+            this.lb_money.Padding = new System.Windows.Forms.Padding(1);
+            this.lb_money.Size = new System.Drawing.Size(147, 50);
             this.lb_money.TabIndex = 4;
             this.lb_money.Text = "Money";
             this.lb_money.Click += new System.EventHandler(this.lb_money_Click);
@@ -104,7 +106,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1942, 1102);
             this.Controls.Add(this.lb_money);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txt_roomcode);
             this.Controls.Add(this.joinBtn);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -113,6 +115,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.JoinGame_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,7 +124,7 @@
         #endregion
 
         private System.Windows.Forms.Button joinBtn;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_roomcode;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.Label lb_money;

@@ -69,11 +69,12 @@
             // 
             // lb_money
             // 
+            this.lb_money.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lb_money.AutoSize = true;
             this.lb_money.BackColor = System.Drawing.Color.Transparent;
             this.lb_money.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_money.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lb_money.Location = new System.Drawing.Point(937, 872);
+            this.lb_money.Location = new System.Drawing.Point(936, 866);
             this.lb_money.Name = "lb_money";
             this.lb_money.Size = new System.Drawing.Size(145, 48);
             this.lb_money.TabIndex = 5;

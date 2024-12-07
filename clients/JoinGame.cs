@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,8 +21,8 @@ namespace clients
             InitializeComponent();
             this.KeyPreview = true; // Cho phép Form nhận sự kiện phím
             this.KeyDown += close_KeyDown;
-            this.data_user = data;
-            lb_money.Text = Convert.ToInt32(data_user.Data.TryGetValue("Credits", out object creditsObj)).ToString();
+            data_user = data;
+            lb_money.Text = "$" + data_user.Data["Credits"];
         }
         private void close_KeyDown(object sender, KeyEventArgs e)
         {
@@ -34,12 +36,18 @@ namespace clients
             }
         }
 
-        private void joinBtn_Click(object sender, EventArgs e)
+        private async void joinBtn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Tính năng đang phát triển");
+            string guestId = data_user.Data["Id"].ToString();
+            var joinGame = await ClientControllers.Games.JoinGame(txt_roomcode.Text, guestId);
         }
 
         private void lb_money_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void JoinGame_Load(object sender, EventArgs e)
         {
 
         }
