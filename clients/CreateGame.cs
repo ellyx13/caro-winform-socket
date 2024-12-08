@@ -21,6 +21,7 @@ namespace clients
             this.KeyPreview = true; // Cho phép Form nhận sự kiện phím
             this.KeyDown += close_KeyDown;
             this.data_user = data;
+            
             lb_money.Text = "$" + data_user.Data["Credits"];
         }
         private void close_KeyDown(object sender, KeyEventArgs e)
@@ -49,6 +50,11 @@ namespace clients
         }
 
         private void lb_money_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void create_game_load(object sender, FormClosedEventArgs e)
         {
 
         }

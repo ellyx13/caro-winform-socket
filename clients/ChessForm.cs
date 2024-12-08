@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,36 +21,88 @@ namespace clients
 
 
         private Button[,] chessBoard;
-        private bool isPlayer1Turn = true;
-        public string status;
         public Schemas.Response message_response;
         public Schemas.Response game_response;
         public Schemas.Response user_response;
+
+        private bool isPlayer1Turn = true;
+        public string status;
+        private bool isMyTurn;
+        private string myRole;
+
         public ChessForm(Schemas.Response data_game, Schemas.Response data_user)
         {
             InitializeComponent();  
             this.KeyPreview = true; // Cho phép Form nhận phím
+
             this.game_response = data_game;
             this.user_response = data_user;
+
             lb_code.Text = "Room code \n" + data_game.Data["Code"].ToString();
+            lb_name.Text = "Name: " + data_user.Data["Name"].ToString();
             status = game_response.Data["Status"].ToString();
-            DrawChessBoard();
+
+            if (data_game.Data["Host"].ToString() == data_user.Data["Id"].ToString())
+            {
+                myRole = "Host";
+                lb_name.Text = lb_name.Text + " " + myRole;
+                isMyTurn = true;
+                MessageBox.Show("Bạn là Host, hãy bắt đầu chơi!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                myRole = "Guest";
+                lb_name.Text = lb_name.Text + " " + myRole;
+                isMyTurn = false;
+                MessageBox.Show("Bạn là Guest, hãy chờ lượt của mình!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
             HandleChess();
+            DrawChessBoard();
         }
 
         public async Task<Boolean> HandleChess()
         {
+            int chat_received_code = 31;
+            int status_isready_code = 28;
+            int move_success_code = 26;
+            int opponent_move_code = 27;
+            int end_game_code = 40;
             while (true)
             {
-                Console.WriteLine("Đang đợi request");
                 var response = await ClientControllers.Reciver();
-                int chat_received_code = 31;
+                Console.WriteLine(response.Code);
+                Console.WriteLine(response.Code == opponent_move_code);
+                if (response.Code == status_isready_code)
+                {
+                    status = "playing";
+                }
+
                 if (response.Code == chat_received_code)
                 {
-                    AppendMessage($"{user_response.Data["Name"]}> " + txtShowChat.Text);
-                    AppendMessage(response.Data["message"].ToString());
+                    string receivedMessage = response.Data["message"].ToString();
+                    string senderName = response.Data["senderName"].ToString();
+                    AppendMessage($"{senderName} > {receivedMessage}");
                 }
-                Console.WriteLine(response.Data);
+
+                if (response.Code == move_success_code)
+                {
+                    Console.WriteLine("Nước đi thành công.");
+                    isMyTurn = false;
+                }
+
+                if (response.Code == opponent_move_code)
+                {
+                    int x = Convert.ToInt32(response.Data["x"]);
+                    int y = Convert.ToInt32(response.Data["y"]);
+                    UpdateBoardWithOpponentMove(x, y);
+                    
+                    isMyTurn = true;
+                }
+                if(response.Code == end_game_code)
+                {
+                    this.Close();
+                }
             }
             return true;
         }
@@ -77,7 +130,7 @@ namespace clients
             }
         }
 
-        private void ChessForm_Load(object sender, EventArgs e)
+        private async void ChessForm_Load(object sender, EventArgs e)
         {
 
         }
@@ -85,11 +138,18 @@ namespace clients
         private async void SendMessage()
         {
             string message = txtChat.Text.Trim();
+            if (status == "waiting")
+            {
+                MessageBox.Show("Phòng đang ở trạng thái chờ, bạn không thể gửi tin nhắn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             if (!string.IsNullOrEmpty(message))
             {
+                AppendMessage($"You > " + message);
                 await ClientControllers.Chat.SendMessage(game_response.Data["Id"].ToString(), user_response.Data["Id"].ToString(), message);
                 txtChat.Clear();
             }
+            txtChat.Clear();
         }
 
         public void AppendMessage(string message)
@@ -100,29 +160,86 @@ namespace clients
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            SendMessage();
+            if (!string.IsNullOrEmpty(txtChat.Text))
+            {
+                SendMessage();
+                txtChat.Clear();
+            }
         }
 
         //Logic caro
 
-        private void Cell_Click(object sender, EventArgs e)
+        private async void Cell_Click(object sender, EventArgs e)
         {
             Button clickedButton = sender as Button;
             if (clickedButton == null || clickedButton.Text != string.Empty)
                 return;
-
-            Point location = (Point)clickedButton.Tag;
-            clickedButton.Text = isPlayer1Turn ? "X" : "O";
-            clickedButton.ForeColor = isPlayer1Turn ? Color.Red : Color.Blue;
-
-            if (CheckWinner(location))
+            if(status == "waiting")
             {
-                MessageBox.Show((isPlayer1Turn ? "Người chơi X" : "Người chơi O") + " Thắng!");
-                ResetBoard();
+                MessageBox.Show("Game bắt đầu khi người chơi khác vào!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!isMyTurn)
+            {
+                MessageBox.Show("Không phải lượt của bạn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
-            isPlayer1Turn = !isPlayer1Turn;
+            Point location = (Point)clickedButton.Tag;
+            clickedButton.Text = myRole == "Host" ? "X" : "O";
+            clickedButton.ForeColor = myRole == "Host" ? Color.Red : Color.Blue;
+
+            var moveResponse = await ClientControllers.Games.MakeMove(
+                game_response.Data["Id"].ToString(),
+                user_response.Data["Id"].ToString(),
+                location.X,
+                location.Y
+            );
+            if(CheckWinner(new Point(location.X, location.Y)))
+            {
+                string winnerId = myRole == "Host" ? game_response.Data["Host"].ToString() : game_response.Data["Guest"].ToString();
+                var response = await ClientControllers.Games.Winner(
+                    game_response.Data["Id"].ToString(),
+                    winnerId
+                );
+                int win_code = 29;
+                Console.WriteLine( response.Data );
+                if(response.Code == win_code)
+                {
+                    MessageBox.Show("Bạn đã thắng!", "Kết thúc", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+            }
+
         }
+        private void UpdateBoardWithOpponentMove(int x, int y)
+        {
+            try
+            {
+                Button opponentMoveButton = chessBoard[x, y];
+                if (myRole == "Host")
+                {
+                    opponentMoveButton.Text = "O";
+                    opponentMoveButton.ForeColor = Color.Blue;
+                }
+                else
+                {
+                    opponentMoveButton.Text = "X";
+                    opponentMoveButton.ForeColor = Color.Red;
+                }
+
+                if (CheckWinner(new Point(x, y)))
+                {
+                    MessageBox.Show("Đối phương đã thắng!", "Kết thúc", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ResetBoard();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi cập nhật nước đi của đối phương: {ex.Message}");
+            }
+        }
+
 
         //Tính logic kiểm tra nước đi
         private bool CheckWinner(Point lastMove)
@@ -174,34 +291,19 @@ namespace clients
             isPlayer1Turn = true;
         }
         //Xử lý sự kiện nút Esc 
-        private void btnEsc_Click(object sender, EventArgs e)
-        {
-            ExitGame();
-        }
 
         private void ChessForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape) // Kiểm tra nếu phím là Esc
             {
-                ExitGame();   
+                this.Close(); // Đóng Form hiện tại
             }
         }
 
-        private async void ExitGame()
-        {
-            var result = MessageBox.Show("Bạn có chắc chắn muốn thoát trò chơi?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                await ClientControllers.Games.Winner(game_response.Data["Id"].ToString(), user_response.Data["Id"].ToString());
-                ClientControllers.Disconnect();
-                Application.Exit();
-            }
-        }
 
         //Xử lý sự kiện nút Enter
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            SendMessage();
         }
 
         private void txtChat_KeyPress(object sender, KeyPressEventArgs e)
@@ -229,6 +331,16 @@ namespace clients
         }
 
         private void lb_code_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtChat_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lb_name_Click(object sender, EventArgs e)
         {
 
         }

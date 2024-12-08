@@ -20,9 +20,8 @@ namespace clients
             client.Disconnect();
         }
 
-        public async static Task<Schemas.Response> Send(string request)
+        public async static Task<Schemas.Response> Send(string request, bool isRecevice = true)
         {
-            Console.WriteLine("Is connected: {0}", IsConnected);
             // Kết nối tới server
             if (IsConnected == false)
             {
@@ -31,10 +30,12 @@ namespace clients
             }
             
             await client.SendAsync(request);
-            var response = await client.ReceiveAsync();
-            Console.WriteLine(request);
-            Console.WriteLine(response);
-            return Schemas.ToDictionary(response);
+            if (isRecevice)
+            {
+                var response = await client.ReceiveAsync();
+                return Schemas.ToDictionary(response);
+            }
+            return null;
         }
 
         public async static Task<Schemas.Response> Reciver()
@@ -118,7 +119,7 @@ namespace clients
                 };
 
                 var request = Schemas.ToRequest(UserId, "games/move", data);
-                return await Send(request);
+                return await Send(request, false);
             }
 
             public async static Task<Schemas.Response> Winner(string gameId, string UserId)
@@ -144,7 +145,7 @@ namespace clients
                 };
 
                 var request = Schemas.ToRequest(UserId, "chat", data);
-                return await Send(request);
+                return await Send(request, false);
             }
         }
     }

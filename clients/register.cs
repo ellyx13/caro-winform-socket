@@ -108,7 +108,6 @@ namespace clients
                 int register_email_exist_code = 11;
                 if (userreigister.Code == register_success_code) 
                 {
-                    MessageBox.Show("Bạn đã đăng ký thành công");
                     new login().Show();
                     this.Close();
                 }

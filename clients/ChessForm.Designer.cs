@@ -33,10 +33,11 @@
             this.txtShowChat = new System.Windows.Forms.TextBox();
             this.txtChat = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
-            this.btnEsc = new System.Windows.Forms.Button();
+            this.btn_send = new System.Windows.Forms.Button();
             this.btnEnter = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lb_code = new System.Windows.Forms.Label();
+            this.lb_name = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,6 +65,7 @@
             this.txtChat.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtChat.ForeColor = System.Drawing.Color.White;
             this.txtChat.Name = "txtChat";
+            this.txtChat.TextChanged += new System.EventHandler(this.txtChat_TextChanged);
             this.txtChat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtChat_KeyPress);
             // 
             // btnSend
@@ -75,15 +77,15 @@
             this.btnSend.UseVisualStyleBackColor = false;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
-            // btnEsc
+            // btn_send
             // 
-            resources.ApplyResources(this.btnEsc, "btnEsc");
-            this.btnEsc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
-            this.btnEsc.BackgroundImage = global::clients.Properties.Resources.Send_Chat;
-            this.btnEsc.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
-            this.btnEsc.Name = "btnEsc";
-            this.btnEsc.UseVisualStyleBackColor = false;
-            this.btnEsc.Click += new System.EventHandler(this.btnSend_Click);
+            resources.ApplyResources(this.btn_send, "btn_send");
+            this.btn_send.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
+            this.btn_send.BackgroundImage = global::clients.Properties.Resources.Send_Chat;
+            this.btn_send.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
+            this.btn_send.Name = "btn_send";
+            this.btn_send.UseVisualStyleBackColor = false;
+            this.btn_send.Click += new System.EventHandler(this.btnSend_Click);
             // 
             // btnEnter
             // 
@@ -99,7 +101,7 @@
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.txtShowChat);
-            this.panel1.Controls.Add(this.btnEsc);
+            this.panel1.Controls.Add(this.btn_send);
             this.panel1.Controls.Add(this.txtChat);
             this.panel1.Name = "panel1";
             // 
@@ -111,11 +113,20 @@
             this.lb_code.Name = "lb_code";
             this.lb_code.Click += new System.EventHandler(this.lb_code_Click);
             // 
+            // lb_name
+            // 
+            resources.ApplyResources(this.lb_name, "lb_name");
+            this.lb_name.BackColor = System.Drawing.Color.Transparent;
+            this.lb_name.ForeColor = System.Drawing.Color.White;
+            this.lb_name.Name = "lb_name";
+            this.lb_name.Click += new System.EventHandler(this.lb_name_Click);
+            // 
             // ChessForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackgroundImage = global::clients.Properties.Resources.Chess_Form_Background;
+            this.Controls.Add(this.lb_name);
             this.Controls.Add(this.lb_code);
             this.Controls.Add(this.btnEnter);
             this.Controls.Add(this.btnSend);
@@ -141,9 +152,10 @@
         private System.Windows.Forms.TextBox txtShowChat;
         private System.Windows.Forms.TextBox txtChat;
         private System.Windows.Forms.Button btnSend;
-        private System.Windows.Forms.Button btnEsc;
+        private System.Windows.Forms.Button btn_send;
         private System.Windows.Forms.Button btnEnter;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lb_code;
+        private System.Windows.Forms.Label lb_name;
     }
 }
