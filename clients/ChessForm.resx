@@ -415,16 +415,16 @@
     <value>True</value>
   </data>
   <data name="lb_name.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 25.8000011pt</value>
+    <value>Microsoft Sans Serif, 24pt</value>
   </data>
   <data name="lb_name.Location" type="System.Drawing.Point, System.Drawing">
-    <value>963, 864</value>
+    <value>943, 881</value>
   </data>
   <data name="lb_name.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
   <data name="lb_name.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 52</value>
+    <value>126, 46</value>
   </data>
   <data name="lb_name.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>

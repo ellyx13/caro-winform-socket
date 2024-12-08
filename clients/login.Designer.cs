@@ -82,6 +82,7 @@
             this.txt_password.PasswordChar = 'X';
             this.txt_password.Size = new System.Drawing.Size(648, 46);
             this.txt_password.TabIndex = 12;
+            this.txt_password.Text = "123123123";
             // 
             // txt_email
             // 
@@ -95,6 +96,7 @@
             this.txt_email.Name = "txt_email";
             this.txt_email.Size = new System.Drawing.Size(648, 46);
             this.txt_email.TabIndex = 11;
+            this.txt_email.Text = "123@gmail.com";
             // 
             // login
             // 
