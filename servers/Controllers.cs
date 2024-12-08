@@ -35,33 +35,46 @@ namespace servers
             // Parse dữ liệu JSON từ client
             var request = JsonConvert.DeserializeObject<Schemas.Request>(requestJson);
             string currentUserId = request.UserId;
-            string result = "Default";
-
+            string result = Exceptions.RouteNotFound();
             // Xử lý route và điều hướng đến controller tương ứng
             switch (request.Route)
             {
                 case "chat":
                     {
+                        Console.WriteLine("Chat");
                         string gameId = request.Data["gameId"].ToString();
                         string message = request.Data["message"].ToString();
                         string userId = request.UserId;
                         string receiverId = await _chatController.GetReceiverId(request.UserId, gameId);
                         await _chatController.Save(gameId, userId, receiverId, message);
-
-                        clients.TryGetValue(receiverId, out TcpClient anotherClient);
-
-                        var anotherStream = anotherClient.GetStream();
-                        var dataSender = new Dictionary<string, object>
+                        if (clients.TryGetValue(receiverId, out TcpClient anotherClient))
+                        {
+                            Console.WriteLine($"milestone 2: anotherClient = {anotherClient}, Connected = {anotherClient.Connected}");
+                            if (anotherClient != null && anotherClient.Connected)
                             {
-                                { "message", message },
-                                { "senderId", userId }
-                            };
+                                var anotherStream = anotherClient.GetStream();
+                                Console.WriteLine("milestone 3");
+                                var dataSender = new Dictionary<string, object>
+                                {
+                                    { "message", message },
+                                    { "senderId", userId }
+                                };
+                                var resultReceiver = Schemas.ToResponse(true, 31, "New message.", dataSender);
+                                Console.WriteLine($"Send message to another {receiverId}: {message}");
+                                await SocketServer.SendMessage(anotherStream, token, resultReceiver);
 
-                        var resultReceiver = Schemas.ToResponse(true, 31, "New message.", dataSender);
-                        await SocketServer.SendMessage(anotherStream, token, resultReceiver);
-
-                        Console.WriteLine($"Send message to {receiverId}: {message}");
-                        result = Schemas.ToResponse(true, 30, "Message sended.", dataSender);
+                                Console.WriteLine($"Send message to {receiverId}: {message}");
+                                result = Schemas.ToResponse(true, 30, "Message sended.", dataSender);
+                            }
+                            else
+                            {
+                                Console.WriteLine("anotherClient is null or not connected.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Receiver {receiverId} not found in clients.");
+                        } 
                         break;
                     }
                 case "games/winner":

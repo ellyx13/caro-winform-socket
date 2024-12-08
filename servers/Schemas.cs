@@ -42,7 +42,7 @@ namespace servers
             {
                 response.Data = new Dictionary<string, object>{
                     { "null", "null" },
-                    { "null", "null" }
+                    { "null1", "null1" }
                 }; ;
             }
             return JsonConvert.SerializeObject(response);

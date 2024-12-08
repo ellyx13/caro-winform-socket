@@ -125,6 +125,7 @@ namespace servers
 
         private void DisconnectClient(TcpClient client, string userId)
         {
+            Console.WriteLine($"User {userId} disconnet");
             if (userId != null)
             {
                 _clients.TryRemove(userId, out _);
