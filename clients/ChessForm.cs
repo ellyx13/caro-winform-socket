@@ -75,7 +75,7 @@ namespace clients
                 if (response.Code == status_isready_code)
                 {
                     status = "playing";
-                    lb_status.Text = "Ready";
+                    lb_status.Text = "Status: " + status;
                 }
 
                 if (response.Code == chat_received_code)
