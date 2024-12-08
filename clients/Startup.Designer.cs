@@ -43,9 +43,10 @@
             this.startBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.startBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(52)))), ((int)(((byte)(69)))));
-            this.startBtn.Location = new System.Drawing.Point(586, 574);
+            this.startBtn.Location = new System.Drawing.Point(732, 718);
+            this.startBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.startBtn.Name = "startBtn";
-            this.startBtn.Size = new System.Drawing.Size(380, 88);
+            this.startBtn.Size = new System.Drawing.Size(475, 110);
             this.startBtn.TabIndex = 13;
             this.startBtn.UseVisualStyleBackColor = false;
             this.startBtn.Click += new System.EventHandler(this.startBtn_Click);
@@ -57,9 +58,10 @@
             this.portLb.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.portLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.portLb.ForeColor = System.Drawing.Color.White;
-            this.portLb.Location = new System.Drawing.Point(522, 470);
+            this.portLb.Location = new System.Drawing.Point(652, 588);
+            this.portLb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.portLb.Name = "portLb";
-            this.portLb.Size = new System.Drawing.Size(518, 37);
+            this.portLb.Size = new System.Drawing.Size(648, 46);
             this.portLb.TabIndex = 12;
             this.portLb.Text = "5000";
             // 
@@ -70,20 +72,21 @@
             this.serverIpLb.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.serverIpLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.serverIpLb.ForeColor = System.Drawing.Color.White;
-            this.serverIpLb.Location = new System.Drawing.Point(522, 338);
+            this.serverIpLb.Location = new System.Drawing.Point(652, 422);
+            this.serverIpLb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.serverIpLb.Name = "serverIpLb";
-            this.serverIpLb.Size = new System.Drawing.Size(518, 37);
+            this.serverIpLb.Size = new System.Drawing.Size(648, 46);
             this.serverIpLb.TabIndex = 11;
             this.serverIpLb.Text = "127.0.0.1";
             // 
             // Startup
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1554, 882);
+            this.ClientSize = new System.Drawing.Size(1942, 1102);
             this.Controls.Add(this.startBtn);
             this.Controls.Add(this.portLb);
             this.Controls.Add(this.serverIpLb);
@@ -94,6 +97,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "login";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
