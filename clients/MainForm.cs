@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using Newtonsoft.Json;
+using System.Net.NetworkInformation;
 
 namespace clients
 {
@@ -18,22 +19,26 @@ namespace clients
         private List<Control> controlsByTabIndex; // Danh sách điều khiển sắp xếp theo TabIndex
         private int currentTabIndex = -1;
         public Schemas.Response data_user;
+        public string userid;
         public MainForm(Schemas.Response data)
         {
             InitializeComponent();
             this.KeyPreview = true; // Đảm bảo Form nhận sự kiện bàn phím
             InitializeTabIndexList();
             data_user = data;
+            userid = data_user.Data["Id"].ToString();
         }
-        private void joinBtn_Click(object sender, EventArgs e)
+        private async void joinBtn_Click(object sender, EventArgs e)
         {
-            JoinGame join = new JoinGame(data_user);
+            var User = await ClientControllers.Users.GetMe(userid);
+            JoinGame join = new JoinGame(User);
             join.Show();
         }
 
-        private void createBtn_Click(object sender, EventArgs e)
+        private async void createBtn_Click(object sender, EventArgs e)
         {
-            CreateGame game = new CreateGame(data_user);
+            var User = await ClientControllers.Users.GetMe(userid);
+            CreateGame game = new CreateGame(User);
             game.Show();
         }
 

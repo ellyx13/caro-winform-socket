@@ -46,6 +46,10 @@ namespace clients
             int game_isend_code = 25;
             if(joinGame.Code == game_join_success_code)
             {
+                var updatedUser = await ClientControllers.Users.GetMe(guestId);
+                data_user.Data["Credits"] = updatedUser.Data["Credits"];
+                lb_money.Text = "$" + updatedUser.Data["Credits"];
+
                 new ChessForm(joinGame, data_user).Show();
                 this.Close();
             }

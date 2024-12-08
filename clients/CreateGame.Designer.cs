@@ -98,7 +98,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CreateGame";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.create_game_load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateGame_FormClosed);
+            this.Load += new System.EventHandler(this.CreateGame_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

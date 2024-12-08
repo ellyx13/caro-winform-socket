@@ -21,9 +21,9 @@ namespace clients
             this.KeyPreview = true; // Cho phép Form nhận sự kiện phím
             this.KeyDown += close_KeyDown;
             this.data_user = data;
-            
             lb_money.Text = "$" + data_user.Data["Credits"];
         }
+        
         private void close_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape) // Kiểm tra nếu phím là Esc
@@ -44,17 +44,25 @@ namespace clients
             int create_success_code = 23;
             if(game.Code == create_success_code)
             {
+                var updatedUser = await ClientControllers.Users.GetMe(hostId);
+                data_user.Data["Credits"] = updatedUser.Data["Credits"];
+                lb_money.Text = "$" + updatedUser.Data["Credits"];
+
                 new ChessForm(game, data_user).Show();
                 this.Close();
             }
+            
         }
-
         private void lb_money_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void create_game_load(object sender, FormClosedEventArgs e)
+        private async void CreateGame_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void CreateGame_FormClosed(object sender, FormClosedEventArgs e)
         {
 
         }
