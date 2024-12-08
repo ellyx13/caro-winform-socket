@@ -44,10 +44,9 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(52)))), ((int)(((byte)(69)))));
-            this.button1.Location = new System.Drawing.Point(721, 849);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Location = new System.Drawing.Point(577, 679);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(504, 20);
+            this.button1.Size = new System.Drawing.Size(403, 16);
             this.button1.TabIndex = 14;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_click);
@@ -61,10 +60,9 @@
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(52)))), ((int)(((byte)(69)))));
-            this.btnLogin.Location = new System.Drawing.Point(733, 718);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLogin.Location = new System.Drawing.Point(586, 574);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(475, 110);
+            this.btnLogin.Size = new System.Drawing.Size(380, 88);
             this.btnLogin.TabIndex = 13;
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -76,13 +74,12 @@
             this.txt_password.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_password.ForeColor = System.Drawing.Color.White;
-            this.txt_password.Location = new System.Drawing.Point(652, 588);
-            this.txt_password.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_password.Location = new System.Drawing.Point(522, 470);
             this.txt_password.Name = "txt_password";
             this.txt_password.PasswordChar = 'X';
-            this.txt_password.Size = new System.Drawing.Size(648, 46);
+            this.txt_password.Size = new System.Drawing.Size(518, 37);
             this.txt_password.TabIndex = 12;
-            this.txt_password.Text = "123123123";
+            this.txt_password.TextChanged += new System.EventHandler(this.txt_password_TextChanged);
             // 
             // txt_email
             // 
@@ -91,21 +88,19 @@
             this.txt_email.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_email.ForeColor = System.Drawing.Color.White;
-            this.txt_email.Location = new System.Drawing.Point(652, 422);
-            this.txt_email.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_email.Location = new System.Drawing.Point(522, 338);
             this.txt_email.Name = "txt_email";
-            this.txt_email.Size = new System.Drawing.Size(648, 46);
+            this.txt_email.Size = new System.Drawing.Size(518, 37);
             this.txt_email.TabIndex = 11;
-            this.txt_email.Text = "123@gmail.com";
             // 
             // login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1942, 1102);
+            this.ClientSize = new System.Drawing.Size(1554, 882);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txt_password);
