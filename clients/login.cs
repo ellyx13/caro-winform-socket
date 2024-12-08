@@ -79,6 +79,10 @@ namespace clients
                     Application.Exit();
                 }
             }
+            else if (e.KeyCode == Keys.Enter) // Kiểm tra nếu phím là Enter
+            {
+                btnLogin.PerformClick(); // Thực hiện hành động khi nhấn Enter
+            }
         }
         private void button1_click(object sender, EventArgs e)
         {

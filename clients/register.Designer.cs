@@ -65,7 +65,7 @@
             this.btn_register.Margin = new System.Windows.Forms.Padding(2);
             this.btn_register.Name = "btn_register";
             this.btn_register.Size = new System.Drawing.Size(475, 110);
-            this.btn_register.TabIndex = 8;
+            this.btn_register.TabIndex = 9;
             this.btn_register.UseVisualStyleBackColor = false;
             this.btn_register.Click += new System.EventHandler(this.btn_register_Click);
             // 
@@ -107,7 +107,7 @@
             this.txt_password.Margin = new System.Windows.Forms.Padding(2);
             this.txt_password.Name = "txt_password";
             this.txt_password.Size = new System.Drawing.Size(664, 46);
-            this.txt_password.TabIndex = 10;
+            this.txt_password.TabIndex = 8;
             // 
             // register
             // 
