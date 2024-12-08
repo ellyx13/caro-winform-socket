@@ -10,11 +10,13 @@ namespace clients
 {
     internal class ClientControllers
     {
-
-        public static SocketClient client = new SocketClient("127.0.0.1", 5000);
-        //public static SocketClient client = new SocketClient("127.0.0.1", 5000);
+        public static SocketClient client;
         public static bool IsConnected = false;
 
+        public static void Start(string serverIp, int port)
+        {
+            client = new SocketClient(serverIp, port);
+        }
         public static void Disconnect()
         {
             client.Disconnect();
