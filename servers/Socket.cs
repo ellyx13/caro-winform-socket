@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -11,6 +12,7 @@ using MongoDB.Driver.Core.Events;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using servers.Chat;
+using servers.Users;
 using Sprache;
 using static servers.Schemas;
 
@@ -23,6 +25,7 @@ namespace servers
         private CancellationTokenSource _cancellationTokenSource;
         private ServerControllers _serverControllers;
         private ChatControllers _chatControllers;
+        private static UserControllers _userControllers = new UserControllers();
 
         public SocketServer()
         {
@@ -35,7 +38,7 @@ namespace servers
         {
             _server = new TcpListener(IPAddress.Parse(ipAddress), port);
             _server.Start();
-            Console.WriteLine($"Server started on {ipAddress}:{port}");
+            Logger.Info($"Server started on {ipAddress}:{port}");
 
             _cancellationTokenSource = new CancellationTokenSource();
             _ = AcceptClientsAsync(_cancellationTokenSource.Token);
@@ -43,7 +46,7 @@ namespace servers
 
         public void Stop()
         {
-            Console.WriteLine("Stopping server...");
+            Logger.Info("Server stopped.");
             _cancellationTokenSource.Cancel();
             _server.Stop();
 
@@ -62,14 +65,14 @@ namespace servers
                 while (!token.IsCancellationRequested)
                 {
                     var client = await _server.AcceptTcpClientAsync();
-                    Console.WriteLine("User connected.");
+                    Logger.Connection("User connected.");
 
                     _ = HandleClientAsync(client, token); // Xử lý client trong task riêng
                 }
             }
             catch (OperationCanceledException)
             {
-                Console.WriteLine("Accepting clients stopped.");
+                Logger.Error("Accepting clients stopped.");
             }
         }
 
@@ -83,6 +86,32 @@ namespace servers
             var response = Encoding.UTF8.GetBytes(result);
             await stream.WriteAsync(response, 0, response.Length, token);
             return true;
+        }
+
+        public async static Task<bool> SendMessageToUser(ConcurrentDictionary<string, TcpClient> clients, CancellationToken token,  string receiverId, string senderId, string message)
+        {
+            string senderFullName = await _userControllers.GetNameById(senderId);
+            string receiverFullName = await _userControllers.GetNameById(receiverId);
+
+            if (clients.TryGetValue(receiverId, out TcpClient anotherClient))
+            {
+                if (anotherClient != null && anotherClient.Connected)
+                {
+                    var anotherStream = anotherClient.GetStream();
+                    Logger.Chat(senderFullName, receiverFullName, message);
+                    await SocketServer.SendMessage(anotherStream, token, message);
+                    return true;
+                }
+                else
+                {
+                    Logger.Info($"Receiver {receiverFullName} is null or not connected.", senderId);
+                }
+            }
+            else
+            {
+                Logger.Info($"Receiver {receiverFullName} not found in clients.", senderId);
+            }
+            return false;
         }
 
         private async Task HandleClientAsync(TcpClient client, CancellationToken token)
@@ -106,30 +135,77 @@ namespace servers
                     string userId = data.UserId;
                     if (!string.IsNullOrEmpty(userId))
                     {
-                        _clients.TryAdd(userId, client);
+                        if (_clients.ContainsKey(userId))
+                        {
+                            _clients[userId] = client;
+                        }
+                        else
+                        {
+                            _clients.TryAdd(userId, client);
+                        }
                     }
-                    
-                    Console.WriteLine($"Received from {userId}: {request}");
+                    string userFullName = await _userControllers.GetNameById(userId);
+                    Logger.Received(request, userFullName);
                     await _serverControllers.HandleRequest(_clients, stream, token, request);
                 }
             }
+            // Client tự disconnect
+            catch (IOException ex) when (ex.InnerException is SocketException socketEx && socketEx.SocketErrorCode == SocketError.ConnectionReset)
+            {
+                string userFullName = await GetUserFullNameFromClient(client);
+                Logger.Error("Client disconnected unexpectedly", ex, userFullName);
+            }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error when handle request: {ex.Message}");
+                string userFullName = await GetUserFullNameFromClient(client);
+                Logger.Error("An unexpected error occurred", ex, userFullName);
             }
             finally
             {
-                DisconnectClient(client, null);
+                clientDisconnect(client);
             }
         }
 
-        private void DisconnectClient(TcpClient client, string userId)
+        private string GetUserId(TcpClient client)
         {
-            Console.WriteLine($"User {userId} disconnet");
+            // Tìm userId tương ứng với TcpClient trong _clients
+            foreach (var kvp in _clients)
+            {
+                if (kvp.Value == client)
+                {
+                    return kvp.Key;
+                }
+            }
+            return null;
+        }
+
+        private async Task<string> GetUserFullNameFromClient(TcpClient client)
+        {
+            string userId = GetUserId(client);
             if (userId != null)
             {
-                _clients.TryRemove(userId, out _);
+                return await _userControllers.GetNameById(userId);
             }
+            return null;
+        }
+
+        private async void clientDisconnect(TcpClient client)
+        {
+            string userId = GetUserId(client);
+
+            // Log và xử lý nếu tìm thấy userId
+            if (userId != null)
+            {
+                string userFullName = await _userControllers.GetNameById(userId);
+                Logger.Connection("Disconnected", userFullName);
+                _clients.TryRemove(userId, out _); // Xóa client khỏi dictionary
+            }
+            else
+            {
+                Logger.Error("Disconnected client not found in _clients.");
+            }
+
+            // Đóng kết nối
             client.Close();
         }
     }

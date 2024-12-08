@@ -12,6 +12,7 @@ using System.Collections.Concurrent;
 using System.Threading;
 using Sprache;
 using MongoDB.Driver.Core.Events;
+using MongoDB.Driver.Core.Servers;
 
 
 namespace servers
@@ -35,6 +36,7 @@ namespace servers
             // Parse dữ liệu JSON từ client
             var request = JsonConvert.DeserializeObject<Schemas.Request>(requestJson);
             string currentUserId = request.UserId;
+            string currentUserFullName = await _userController.GetNameById(currentUserId);  
             string result = Exceptions.RouteNotFound();
             // Xử lý route và điều hướng đến controller tương ứng
             switch (request.Route)
@@ -45,67 +47,53 @@ namespace servers
                         string gameId = request.Data["gameId"].ToString();
                         string message = request.Data["message"].ToString();
                         string userId = request.UserId;
-                        string receiverId = await _chatController.GetReceiverId(request.UserId, gameId);
+                        string receiverId = await _chatController.GetReceiverId(request.UserId, gameId, null);
                         await _chatController.Save(gameId, userId, receiverId, message);
-                        if (clients.TryGetValue(receiverId, out TcpClient anotherClient))
-                        {
-                            Console.WriteLine($"milestone 2: anotherClient = {anotherClient}, Connected = {anotherClient.Connected}");
-                            if (anotherClient != null && anotherClient.Connected)
-                            {
-                                var anotherStream = anotherClient.GetStream();
-                                Console.WriteLine("milestone 3");
-                                var dataSender = new Dictionary<string, object>
-                                {
-                                    { "message", message },
-                                    { "senderId", userId }
-                                };
-                                var resultReceiver = Schemas.ToResponse(true, 31, "New message.", dataSender);
-                                Console.WriteLine($"Send message to another {receiverId}: {message}");
-                                await SocketServer.SendMessage(anotherStream, token, resultReceiver);
 
-                                Console.WriteLine($"Send message to {receiverId}: {message}");
-                                result = Schemas.ToResponse(true, 30, "Message sended.", dataSender);
-                            }
-                            else
-                            {
-                                Console.WriteLine("anotherClient is null or not connected.");
-                            }
-                        }
-                        else
+                        var dataSender = new Dictionary<string, object>
                         {
-                            Console.WriteLine($"Receiver {receiverId} not found in clients.");
-                        } 
+                            { "message", message },
+                            { "senderId", request.UserId },
+                            { "senderName", await _userController.GetNameById(request.UserId) },
+                        };
+                        var messageSender = Schemas.ToResponse(true, 31, "New message.", dataSender);
+                        await SocketServer.SendMessageToUser(clients, token, receiverId, request.UserId, messageSender);
+
+                        result = Schemas.ToResponse(true, 30, "Message sended.", dataSender);
                         break;
                     }
                 case "games/winner":
                     {
                         string gameId = request.Data["gameId"].ToString();
                         string winner = request.UserId;
+                        string receiverId = await _chatController.GetReceiverId(request.UserId, gameId, null);
+                        var dataSender = new Dictionary<string, object>
+                        {
+                            { "WinnerId", request.UserId },
+                            { "WinnerFullName", await _userController.GetNameById(request.UserId) },
+                        };
+                        var messageSender = Schemas.ToResponse(true, 40, "Game is end.", dataSender);
+                        await SocketServer.SendMessageToUser(clients, token, receiverId, request.UserId, messageSender);
+                        
                         result = await _gameController.SetWinner(gameId, winner);
                         break;
                     }
                 case "games/move":
                     {
                         string gameId = request.Data["gameId"].ToString();
-                        string userId = request.UserId;
-                        int x = int.Parse(request.Data["x"].ToString());
-                        int y = int.Parse(request.Data["y"].ToString());
-
-                        string receiverId = await _chatController.GetReceiverId(userId, gameId);
-                        clients.TryGetValue(receiverId, out TcpClient anotherClient);
-                        var anotherStream = anotherClient.GetStream();
-                        var dataReceiver = new Dictionary<string, object>
+                        var dataSender = new Dictionary<string, object>
                             {
                                 { "GameId", gameId },
-                                { "userMakeMove", userId },
-                                { "x", x },
-                                { "y", y }
+                                { "userMakeMove", request.UserId },
+                                { "x", int.Parse(request.Data["x"].ToString()) },
+                                { "y", int.Parse(request.Data["y"].ToString()) }
                             };
 
-                        var resultReceiver = Schemas.ToResponse(true, 27, "New move.", dataReceiver);
-                        await SocketServer.SendMessage(anotherStream, token, resultReceiver);
+                        string receiverId = await _chatController.GetReceiverId(request.UserId, gameId, null);
+                        var messageSender = Schemas.ToResponse(true, 27, "New move.", dataSender);
+                        await SocketServer.SendMessageToUser(clients, token, receiverId, request.UserId, messageSender);
 
-                        result = _gameController.MakeMove(gameId, userId, x, y);
+                        result = _gameController.MakeMove(gameId, request.UserId, int.Parse(request.Data["x"].ToString()), int.Parse(request.Data["y"].ToString()));
                         break;
                     }
                 case "users/register":
@@ -118,6 +106,11 @@ namespace servers
                         result = await _userController.LoginUser(request.Data);
                         break;
                     }
+                case "users/me":
+                    {
+                        result = await _userController.GetMe(request.UserId);
+                        break;
+                    }
                 case "games/create":
                     {
                         result = await _gameController.CreateGame(request.Data["gameName"], request.UserId);
@@ -125,7 +118,20 @@ namespace servers
                     }
                 case "games/join":
                     {
+                        string userId = request.UserId;
+                        string gameCode = request.Data["gameCode"].ToString();
                         result = await _gameController.JoinGame(request.Data["gameCode"], request.UserId);
+                        if (result.Contains("Join game successed"))
+                        {
+                            string receiverId = await _chatController.GetReceiverId(userId, null, gameCode);
+                            var dataSender = new Dictionary<string, object>
+                            {
+                                { "gameCode", gameCode },
+                                {"guestName",  await _userController.GetNameById(request.UserId)}
+                            };
+                            var messageSender = Schemas.ToResponse(true, 28, "Game is ready.", dataSender);
+                            await SocketServer.SendMessageToUser(clients, token, receiverId, request.UserId, messageSender);
+                        }
                         break;
                     }
                 default:
@@ -136,7 +142,7 @@ namespace servers
                     }
             }
             await SocketServer.SendMessage(stream, token, result);
-            Console.WriteLine($"Response to {currentUserId}: {result}");
+            Logger.Response(result, currentUserFullName);
             return true;
         }
     }

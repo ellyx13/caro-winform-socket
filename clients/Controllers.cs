@@ -70,6 +70,18 @@ namespace clients
                 var request = Schemas.ToRequest(null, "users/login", data);
                 return await Send(request);
             }
+
+            public async static Task<Schemas.Response> GetMe(string userId)
+            {
+                var data = new Dictionary<string, object>
+                {
+                    { "null", "null" },
+                    { "null1", "null" }
+                };
+
+                var request = Schemas.ToRequest(userId, "users/me", data);
+                return await Send(request);
+            }
         }
 
         public static class Games

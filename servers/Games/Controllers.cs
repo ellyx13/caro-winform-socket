@@ -148,7 +148,7 @@ namespace servers.Games
             await crud.UpdateById(game.Id, game);
             var gameUpdated = await crud.GetById<GameModel>(gameId);
             var gameData = gameUpdated.ToDictionary();
-            return Schemas.ToResponse(true, 26, winner + " is winner.", gameData);
+            return Schemas.ToResponse(true, 29, winner + " is winner.", gameData);
         }
 
         public string MakeMove(string gameId, string userId, int x, int y)

@@ -39,9 +39,18 @@ namespace servers.Chat
             return result;
         }
 
-        public async Task<string> GetReceiverId(string userId, string gameId)
+        public async Task<string> GetReceiverId(string userId, string gameId, string gameCode)
         {
-            var game = await gameControllers.GetById(gameId);
+            GameModel game = null;
+            if (gameId != null)
+            {
+                game = await gameControllers.GetById(gameId);
+            }
+            if (gameCode != null)
+            {
+                var games = await gameControllers.GetByField("Code", gameCode);
+                game = games[0];
+            }
 
             if (userId == game.Host)
             {

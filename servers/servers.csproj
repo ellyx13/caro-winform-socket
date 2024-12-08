@@ -261,6 +261,7 @@
     <Compile Include="Database\Config.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="Games\Exceptions.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Games\Controllers.cs" />

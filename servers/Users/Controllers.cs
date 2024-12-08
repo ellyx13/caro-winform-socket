@@ -23,6 +23,14 @@ namespace servers.Users
             return user;
         }
 
+        public async Task<string> GetNameById(string id = null)
+        {
+            if (id == null) return null;
+            var user = await GetById(id);
+            if (user == null) return null;
+            return user.Name;
+        }
+
         // Lấy user theo trường cụ thể
         public async Task<List<UsersModel>> GetByField(string fieldName, string data)
         {
@@ -69,7 +77,7 @@ namespace servers.Users
         public async Task<bool> PlusMoneyForWinner(string userId)
         {
             var user = await GetById(userId);
-            user.Credits = user.Credits + 10000;
+            user.Credits = user.Credits + 20000;
             return await UpdateById(userId, user);
         }
 
@@ -121,7 +129,13 @@ namespace servers.Users
             }
 
             var userData = user.ToDictionary();
-            return Schemas.ToResponse(true, 14, "Login successed.", userData);
+            return Schemas.ToResponse(true, 14, "Login successed", userData);
+        }
+
+        public async Task<string> GetMe(string userId)
+        {
+            var user = await GetById(userId);
+            return Schemas.ToResponse(true, 16, "Get me success", user.ToDictionary());
         }
     }
 }
