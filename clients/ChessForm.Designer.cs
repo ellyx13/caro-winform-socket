@@ -38,6 +38,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lb_code = new System.Windows.Forms.Label();
             this.lb_name = new System.Windows.Forms.Label();
+            this.lb_status = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -121,11 +122,20 @@
             this.lb_name.Name = "lb_name";
             this.lb_name.Click += new System.EventHandler(this.lb_name_Click);
             // 
+            // lb_status
+            // 
+            resources.ApplyResources(this.lb_status, "lb_status");
+            this.lb_status.BackColor = System.Drawing.Color.Transparent;
+            this.lb_status.ForeColor = System.Drawing.Color.White;
+            this.lb_status.Name = "lb_status";
+            this.lb_status.Click += new System.EventHandler(this.lb_status_Click);
+            // 
             // ChessForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackgroundImage = global::clients.Properties.Resources.Chess_Form_Background;
+            this.Controls.Add(this.lb_status);
             this.Controls.Add(this.lb_name);
             this.Controls.Add(this.lb_code);
             this.Controls.Add(this.btnEnter);
@@ -157,5 +167,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lb_code;
         private System.Windows.Forms.Label lb_name;
+        private System.Windows.Forms.Label lb_status;
     }
 }

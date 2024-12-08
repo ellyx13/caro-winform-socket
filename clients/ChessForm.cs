@@ -38,23 +38,22 @@ namespace clients
             this.game_response = data_game;
             this.user_response = data_user;
 
-            lb_code.Text = "Room code \n" + data_game.Data["Code"].ToString();
-            lb_name.Text = "Name: " + data_user.Data["Name"].ToString();
+            lb_code.Text = "Room code: " + data_game.Data["Code"].ToString();
+            lb_name.Text = data_user.Data["Name"].ToString();
             status = game_response.Data["Status"].ToString();
+            lb_status.Text ="Status: " + status;
 
             if (data_game.Data["Host"].ToString() == data_user.Data["Id"].ToString())
             {
                 myRole = "Host";
-                lb_name.Text = lb_name.Text + " " + myRole;
+                lb_name.Text = myRole + ": " + lb_name.Text;
                 isMyTurn = true;
-                MessageBox.Show("Bạn là Host, hãy bắt đầu chơi!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
                 myRole = "Guest";
-                lb_name.Text = lb_name.Text + " " + myRole;
+                lb_name.Text = myRole + ": " + lb_name.Text;
                 isMyTurn = false;
-                MessageBox.Show("Bạn là Guest, hãy chờ lượt của mình!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             HandleChess();
@@ -76,6 +75,7 @@ namespace clients
                 if (response.Code == status_isready_code)
                 {
                     status = "playing";
+                    lb_status.Text = "Ready";
                 }
 
                 if (response.Code == chat_received_code)
@@ -341,6 +341,11 @@ namespace clients
         }
 
         private void lb_name_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lb_status_Click(object sender, EventArgs e)
         {
 
         }

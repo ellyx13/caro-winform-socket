@@ -58,7 +58,7 @@ namespace clients
 
         }
 
-        private async void CreateGame_Load(object sender, EventArgs e)
+        private void CreateGame_Load(object sender, EventArgs e)
         {
         }
 

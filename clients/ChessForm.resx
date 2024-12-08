@@ -151,7 +151,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnlBoard.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <metadata name="txtShowChat.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -265,7 +265,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSend.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <metadata name="btn_send.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -343,7 +343,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnEnter.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <metadata name="panel1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -376,7 +376,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="lb_code.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -385,19 +385,19 @@
     <value>True</value>
   </data>
   <data name="lb_code.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 30pt</value>
+    <value>Microsoft Sans Serif, 18pt</value>
   </data>
   <data name="lb_code.Location" type="System.Drawing.Point, System.Drawing">
-    <value>942, 204</value>
+    <value>945, 241</value>
   </data>
   <data name="lb_code.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 58</value>
+    <value>167, 36</value>
   </data>
   <data name="lb_code.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
   <data name="lb_code.Text" xml:space="preserve">
-    <value>label1</value>
+    <value>Room code</value>
   </data>
   <data name="&gt;&gt;lb_code.Name" xml:space="preserve">
     <value>lb_code</value>
@@ -409,28 +409,28 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lb_code.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="lb_name.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="lb_name.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 24pt</value>
+    <value>Microsoft Sans Serif, 18pt</value>
   </data>
   <data name="lb_name.Location" type="System.Drawing.Point, System.Drawing">
-    <value>943, 881</value>
+    <value>945, 880</value>
   </data>
   <data name="lb_name.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
   <data name="lb_name.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 46</value>
+    <value>78, 36</value>
   </data>
   <data name="lb_name.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
   <data name="lb_name.Text" xml:space="preserve">
-    <value>label1</value>
+    <value>User</value>
   </data>
   <data name="&gt;&gt;lb_name.Name" xml:space="preserve">
     <value>lb_name</value>
@@ -442,6 +442,39 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lb_name.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lb_status.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="lb_status.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lb_status.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 18pt</value>
+  </data>
+  <data name="lb_status.Location" type="System.Drawing.Point, System.Drawing">
+    <value>945, 190</value>
+  </data>
+  <data name="lb_status.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 36</value>
+  </data>
+  <data name="lb_status.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="lb_status.Text" xml:space="preserve">
+    <value>status</value>
+  </data>
+  <data name="&gt;&gt;lb_status.Name" xml:space="preserve">
+    <value>lb_status</value>
+  </data>
+  <data name="&gt;&gt;lb_status.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lb_status.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lb_status.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
