@@ -32,9 +32,10 @@ namespace clients
             this.game_response = data_game;
             this.user_response = data_user;
             lb_code.Text = "Room code \n" + data_game.Data["Code"].ToString();
+            lb_name.Text = "Name: " + data_user.Data["Name"].ToString();
             status = game_response.Data["Status"].ToString();
-            DrawChessBoard();
             HandleChess();
+            DrawChessBoard();
         }
 
         public async Task<Boolean> HandleChess()
@@ -43,11 +44,19 @@ namespace clients
             {
                 Console.WriteLine("Đang đợi request");
                 var response = await ClientControllers.Reciver();
+
                 int chat_received_code = 31;
+                int status_isready_code = 28;
+                if(response.Code == status_isready_code)
+                {
+                    status = "playing";
+                }
                 if (response.Code == chat_received_code)
                 {
-                    AppendMessage($"{user_response.Data["Name"]}> " + txtShowChat.Text);
-                    AppendMessage(response.Data["message"].ToString());
+                    string receivedMessage = response.Data["message"].ToString();
+                    string senderName = response.Data["senderName"].ToString();
+                    string chat = receivedMessage;
+                    AppendMessage($"{senderName} > " + chat);
                 }
                 Console.WriteLine(response.Data);
             }
@@ -77,7 +86,7 @@ namespace clients
             }
         }
 
-        private void ChessForm_Load(object sender, EventArgs e)
+        private async void ChessForm_Load(object sender, EventArgs e)
         {
 
         }
@@ -85,11 +94,18 @@ namespace clients
         private async void SendMessage()
         {
             string message = txtChat.Text.Trim();
+            if (status == "waiting")
+            {
+                MessageBox.Show("Phòng đang ở trạng thái chờ, bạn không thể gửi tin nhắn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             if (!string.IsNullOrEmpty(message))
             {
+                AppendMessage($"You > " + message);
                 await ClientControllers.Chat.SendMessage(game_response.Data["Id"].ToString(), user_response.Data["Id"].ToString(), message);
                 txtChat.Clear();
             }
+            txtChat.Clear();
         }
 
         public void AppendMessage(string message)
@@ -100,7 +116,11 @@ namespace clients
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            SendMessage();
+            if (!string.IsNullOrEmpty(txtChat.Text))
+            {
+                SendMessage();
+                txtChat.Clear();
+            }
         }
 
         //Logic caro
@@ -174,34 +194,19 @@ namespace clients
             isPlayer1Turn = true;
         }
         //Xử lý sự kiện nút Esc 
-        private void btnEsc_Click(object sender, EventArgs e)
-        {
-            ExitGame();
-        }
 
         private void ChessForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape) // Kiểm tra nếu phím là Esc
             {
-                ExitGame();   
+                this.Close(); // Đóng Form hiện tại
             }
         }
 
-        private async void ExitGame()
-        {
-            var result = MessageBox.Show("Bạn có chắc chắn muốn thoát trò chơi?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                await ClientControllers.Games.Winner(game_response.Data["Id"].ToString(), user_response.Data["Id"].ToString());
-                ClientControllers.Disconnect();
-                Application.Exit();
-            }
-        }
 
         //Xử lý sự kiện nút Enter
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            SendMessage();
         }
 
         private void txtChat_KeyPress(object sender, KeyPressEventArgs e)
@@ -229,6 +234,16 @@ namespace clients
         }
 
         private void lb_code_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtChat_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lb_name_Click(object sender, EventArgs e)
         {
 
         }

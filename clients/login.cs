@@ -102,7 +102,6 @@ namespace clients
                 int login_authen_failed_code = 15;
                 if(userLogin.Code == login_success_code)
                 {
-                    MessageBox.Show("Đăng nhập thành công");
                     new MainForm(userLogin).Show();
                     this.Hide();
                 }
